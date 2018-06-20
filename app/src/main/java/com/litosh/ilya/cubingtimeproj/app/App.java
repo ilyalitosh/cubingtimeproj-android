@@ -1,0 +1,31 @@
+package com.litosh.ilya.cubingtimeproj.app;
+
+import android.app.Application;
+
+import com.litosh.ilya.ct_sdk.api.ApiService;
+import com.litosh.ilya.cubingtimeproj.db.models.MyObjectBox;
+
+import io.objectbox.BoxStore;
+
+/**
+ * App класс приложения
+ *
+ * Created by ilya_ on 16.06.2018.
+ */
+
+public class App extends Application {
+
+    private static BoxStore boxStore;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ApiService.init();
+
+        boxStore = MyObjectBox.builder().androidContext(this).build();
+    }
+
+    public static BoxStore getDbSession() {
+        return boxStore;
+    }
+}

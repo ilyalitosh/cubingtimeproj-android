@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CubingTime</string>
+    <string name="app_version">v0.1.1a</string>
+
+    <string name="activity_auth_input_email_hint">Email</string>
+    <string name="activity_auth_input_pass_hint">password</string>
+    <string name="activity_auth_button_sign_in_hint">Sign in</string>
+    <string name="activity_auth_button_sign_up_hint">Sign up</string>
+    <string name="activity_auth_progress_dialog_sign_in_title">Sign in…</string>
+
+</resources>
