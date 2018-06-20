@@ -1,1 +1,1 @@
-# CubingTime клиента для Android
+# CubingTime клиент для Android
