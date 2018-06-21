@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".homeactivity.ui.ProfileActivity"
+            android:name=".profileactivity.ui.ProfileActivity"
             android:theme="@style/AppThemeNoActionBar">
 
         </activity>

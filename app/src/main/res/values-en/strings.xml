@@ -7,5 +7,6 @@
     <string name="activity_auth_button_sign_in_hint">Sign in</string>
     <string name="activity_auth_button_sign_up_hint">Sign up</string>
     <string name="activity_auth_progress_dialog_sign_in_title">Sign in…</string>
+    <string name="activity_profile_profilename_title">Илья Литош</string>
 
 </resources>

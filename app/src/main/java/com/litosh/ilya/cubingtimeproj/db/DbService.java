@@ -1,7 +1,7 @@
 package com.litosh.ilya.cubingtimeproj.db;
 
 import com.litosh.ilya.cubingtimeproj.app.App;
-import com.litosh.ilya.cubingtimeproj.db.models.User;
+import com.litosh.ilya.cubingtimeproj.db.models.UserCache;
 
 /**
  * DbService репозиторий для доступа к локальной БД
@@ -14,31 +14,33 @@ public class DbService implements DbCrud {
     private static final String TAG = "OBoxDbService";
 
     @Override
-    public void addUser(User user) {
+    public void addUser(UserCache userCache) {
         App.getDbSession()
-                .boxFor(User.class)
-                .put(user);
+                .boxFor(UserCache.class)
+                .put(userCache);
     }
 
     @Override
-    public User getUser() {
+    public UserCache getUser() {
         return App.getDbSession()
-                .boxFor(User.class)
+                .boxFor(UserCache.class)
                 .get(1);
     }
 
     @Override
-    public void updateUser(User user) {
-        user.setId(1);
+    public void updateUser(UserCache userCache) {
+        if (App.getDbSession().boxFor(UserCache.class).getAll().size() == 1) {
+            userCache.setId(1);
+        }
         App.getDbSession()
-                .boxFor(User.class)
-                .put(user);
+                .boxFor(UserCache.class)
+                .put(userCache);
     }
 
     @Override
     public void deleteUser() {
         App.getDbSession()
-                .boxFor(User.class)
+                .boxFor(UserCache.class)
                 .removeAll();
     }
 }

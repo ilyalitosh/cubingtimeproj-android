@@ -1,6 +1,6 @@
 package com.litosh.ilya.cubingtimeproj.db;
 
-import com.litosh.ilya.cubingtimeproj.db.models.User;
+import com.litosh.ilya.cubingtimeproj.db.models.UserCache;
 
 /**
  * DbCrud с базовыми методами для "общения"
@@ -12,27 +12,27 @@ import com.litosh.ilya.cubingtimeproj.db.models.User;
 interface DbCrud {
 
     /**
-     * Добавить User в БД
+     * Добавить UserCache в БД
      *
-     * @param user User-сущность для добавления
+     * @param userCache UserCache-сущность для добавления
      */
-    void addUser(User user);
+    void addUser(UserCache userCache);
 
     /**
-     * Получить User из БД
+     * Получить UserCache из БД
      *
      */
-    User getUser();
+    UserCache getUser();
 
     /**
-     * Обновить User в БД
+     * Обновить UserCache в БД
      *
-     * @param user User-сущность для обновления
+     * @param userCache UserCache-сущность для обновления
      */
-    void updateUser(User user);
+    void updateUser(UserCache userCache);
 
     /**
-     * Удалить User из БД
+     * Удалить UserCache из БД
      *
      */
     void deleteUser();

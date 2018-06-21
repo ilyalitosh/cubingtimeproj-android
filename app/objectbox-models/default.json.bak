@@ -4,51 +4,43 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "2:3252182402088457747",
-      "lastPropertyId": "5:328692630669715304",
-      "name": "UserCache",
+      "id": "1:5126195832023008795",
+      "lastPropertyId": "5:2392697139643052756",
+      "name": "User",
       "properties": [
         {
-          "id": "1:4738363771483006720",
+          "id": "1:4945447948971318532",
           "name": "id"
         },
         {
-          "id": "2:7016957092952926549",
+          "id": "2:2391849797973602281",
           "name": "email"
         },
         {
-          "id": "3:6720346684539892362",
+          "id": "3:231664254906795888",
           "name": "pass"
         },
         {
-          "id": "4:5716509631547066610",
+          "id": "4:2053254666174755756",
           "name": "active"
         },
         {
-          "id": "5:328692630669715304",
+          "id": "5:2392697139643052756",
           "name": "phpSessId"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "2:3252182402088457747",
+  "lastEntityId": "1:5126195832023008795",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
-  "retiredEntityUids": [
-    5126195832023008795
-  ],
+  "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    4945447948971318532,
-    2391849797973602281,
-    231664254906795888,
-    2053254666174755756,
-    2392697139643052756
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

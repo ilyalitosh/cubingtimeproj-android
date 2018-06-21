@@ -9,7 +9,7 @@ import com.litosh.ilya.ct_sdk.callbacks.OnUserAuthorizateListener;
 import com.litosh.ilya.ct_sdk.models.Cookie;
 import com.litosh.ilya.cubingtimeproj.authactivity.views.SignInButtonView;
 import com.litosh.ilya.cubingtimeproj.db.DbService;
-import com.litosh.ilya.cubingtimeproj.db.models.User;
+import com.litosh.ilya.cubingtimeproj.db.models.UserCache;
 import com.litosh.ilya.cubingtimeproj.globalmodels.UserCookie;
 
 /**
@@ -24,44 +24,49 @@ public class SignInPresenter extends MvpPresenter<SignInButtonView> {
     private static final String TAG = "SignInPresenter";
 
     public void trySignIn() {
-        User user = new DbService().getUser();
-        if (user != null) {
-            if (user.isActive()) {
+        UserCache userCache = new DbService().getUser();
+        if (userCache != null) {
+            if (userCache.isActive()) {
                 getViewState().showProgressDialog();
-                tryAuthorizate(user);
+                tryAuthorizate(userCache);
             }
         }
     }
 
-    private void initUserCookie(Cookie cookie) {
+    private void initUserCookie(Cookie cookie, String ctUserid) {
         UserCookie.setCbtl(cookie.getCbtl());
         UserCookie.setCbtp(cookie.getCbtp());
         UserCookie.setLang(cookie.getLang());
         UserCookie.setNight(cookie.getNight());
         UserCookie.setNoprev(cookie.getNoprev());
         UserCookie.setPhpSessId(cookie.getPhpSessId());
+        UserCookie.setCtUserId(ctUserid);
     }
 
-    private void tryAuthorizate(User user) {
+    private void tryAuthorizate(UserCache userCache) {
         ApiService.authorizate(
-                user.getEmail(),
-                user.getPass(),
+                userCache.getEmail(),
+                userCache.getPass(),
                 new OnUserAuthorizateListener() {
                     @Override
                     public void onSuccess(Cookie cookie, String userId) {
-                        initUserCookie(cookie);
+                        initUserCookie(cookie, userId);
                         getViewState().hideProgressDialog();
                         getViewState().startProfileActivity();
                     }
 
                     @Override
                     public void onError(Throwable t, String errorMessage) {
-                        user.setActive(false);
-                        new DbService().deleteUser();
+                        updateUserCache(userCache);
                         getViewState().hideProgressDialog();
                         Log.i(TAG, t.toString() + ", " + errorMessage);
                     }
                 });
+    }
+
+    private void updateUserCache(UserCache userCache) {
+        userCache.setActive(false);
+        new DbService().updateUser(userCache);
     }
 
 }

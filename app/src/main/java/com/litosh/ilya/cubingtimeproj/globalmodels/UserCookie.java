@@ -3,6 +3,7 @@ package com.litosh.ilya.cubingtimeproj.globalmodels;
 import com.litosh.ilya.ct_sdk.models.BaseCookie;
 
 /**
+ *
  * Created by ilya_ on 18.06.2018.
  */
 
@@ -14,6 +15,7 @@ public class UserCookie extends BaseCookie {
     private static String lang;
     private static String noprev;
     private static String night;
+    private static String ctUserId;
 
     public static void setCbtl(String cbtl) {
         UserCookie.cbtl = cbtl;
@@ -67,5 +69,16 @@ public class UserCookie extends BaseCookie {
     @Override
     public String getNoprev() {
         return noprev;
+    }
+
+
+    // TODO: (refactoring_0)
+    // FIXME: в будущем следует отрефакторить
+    public static String getCtUserId() {
+        return ctUserId;
+    }
+
+    public static void setCtUserId(String ctUserId) {
+        UserCookie.ctUserId = ctUserId;
     }
 }

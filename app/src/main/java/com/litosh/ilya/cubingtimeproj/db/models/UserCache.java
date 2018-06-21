@@ -4,12 +4,12 @@ import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
 
 /**
- * ObjectBox-сущность User для кеширования информации о пользователе
+ * ObjectBox-сущность UserCache для кеширования информации о пользователе
  *
  * Created by ilya_ on 20.06.2018.
  */
 @Entity
-public class User {
+public class UserCache {
 
     @Id
     private long id;
@@ -57,4 +57,5 @@ public class User {
     public void setPhpSessId(String phpSessId) {
         this.phpSessId = phpSessId;
     }
+
 }
