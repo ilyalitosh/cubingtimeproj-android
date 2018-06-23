@@ -18,7 +18,7 @@ import com.litosh.ilya.cubingtimeproj.authactivity.presenters.SignInPresenter;
 import com.litosh.ilya.cubingtimeproj.authactivity.views.SignInButtonView;
 import com.litosh.ilya.cubingtimeproj.db.models.UserCache;
 import com.litosh.ilya.cubingtimeproj.globalmodels.InputFormsChecker;
-import com.litosh.ilya.cubingtimeproj.profileactivity.ui.ProfileActivity;
+import com.litosh.ilya.cubingtimeproj.myprofileactivity.ui.MyProfileActivity;
 
 public class AuthActivity extends MvpAppCompatActivity
         implements InputFormsChecker, SignInButtonView {
@@ -38,10 +38,6 @@ public class AuthActivity extends MvpAppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
-
-        for (UserCache userCache : App.getDbSession().boxFor(UserCache.class).getAll()) {
-            System.out.println(userCache.getId() + " " + userCache.getPass());
-        }
 
         mSignInPresenter.trySignIn();
 
@@ -89,7 +85,7 @@ public class AuthActivity extends MvpAppCompatActivity
 
     @Override
     public void startProfileActivity() {
-        Intent intent = new Intent(this, ProfileActivity.class);
+        Intent intent = new Intent(this, MyProfileActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }

@@ -1,12 +1,21 @@
 <resources>
     <string name="app_name">CubingTime</string>
-    <string name="app_version">v0.1.1a</string>
+    <string name="app_version">v0.1.4a</string>
+    <string name="navigation_drawer_open">navigation drawer open</string>
+    <string name="navigation_drawer_close">navigation drawer close</string>
 
     <string name="activity_auth_input_email_hint">Email</string>
     <string name="activity_auth_input_pass_hint">password</string>
     <string name="activity_auth_button_sign_in_hint">Sign in</string>
     <string name="activity_auth_button_sign_up_hint">Sign up</string>
     <string name="activity_auth_progress_dialog_sign_in_title">Sign in…</string>
-    <string name="activity_profile_profilename_title">Илья Литош</string>
+
+
+
+    <string name="activity_profile_profilename_title">Unknown Unknown</string>
+    <string name="activity_profile_user_info_title_default">Not indicated</string>
+    <string name="activity_profile_user_friends_default_hint">Friends\u0020</string>
+    <string name="activity_profile_user_friends_default_value_0">0</string>
+    <string name="activity_profile_activity_title_default">offline</string>
 
 </resources>

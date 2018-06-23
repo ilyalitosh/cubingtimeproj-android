@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.1'
     implementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support:design:26.1.0'
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
@@ -41,6 +42,16 @@ dependencies {
     implementation 'com.arello-mobile:moxy-android:1.5.3'
     implementation 'com.arello-mobile:moxy-app-compat:1.5.3'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.5.3'
+    // OverScroll
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
+    // RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    // Fresco
+    implementation 'com.facebook.fresco:fresco:1.9.0'
+    // Fresco Image Viewer
+    implementation 'com.github.stfalcon:frescoimageviewer:0.5.0'
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
     //
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

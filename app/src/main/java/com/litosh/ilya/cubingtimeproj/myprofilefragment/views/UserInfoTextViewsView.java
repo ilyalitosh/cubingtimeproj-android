@@ -1,4 +1,4 @@
-package com.litosh.ilya.cubingtimeproj.profileactivity.views;
+package com.litosh.ilya.cubingtimeproj.myprofilefragment.views;
 
 import com.arellomobile.mvp.MvpView;
 import com.litosh.ilya.ct_sdk.models.User;
