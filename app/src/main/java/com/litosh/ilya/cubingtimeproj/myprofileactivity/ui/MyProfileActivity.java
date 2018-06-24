@@ -3,7 +3,6 @@ package com.litosh.ilya.cubingtimeproj.myprofileactivity.ui;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 
-import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.baseactivity.ui.BaseActivity;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.ui.MyProfileFragment;
 
@@ -30,7 +29,7 @@ public class MyProfileActivity extends BaseActivity {
     private void initMyProfileFragment() {
         mMyProfileFragment = new MyProfileFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.activity_base_fragment_container, mMyProfileFragment);
+        ft.replace(getFragmentContainer().getId(), mMyProfileFragment);
         ft.commit();
     }
 }

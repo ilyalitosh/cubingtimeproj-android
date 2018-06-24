@@ -71,7 +71,7 @@ public class MyProfileFragment extends MvpAppCompatFragment
         mWca = view.findViewById(R.id.activity_profile_user_info_wca_title);
         mFriends = view.findViewById(R.id.activity_profile_user_info_friends_value);
         mAvatarContainer = view.findViewById(R.id.activity_profile_avatar_container);
-        mSwipeRefreshLayout = view.findViewById(R.id.activity_profile_swipe_layout);
+        mSwipeRefreshLayout = view.findViewById(R.id.activity_profile_swipe_refresh_layout);
         setCustomSwipeRefreshLayoutStyle();
         mProfileScrollView = view.findViewById(R.id.activity_profile_scroll_view_profile);
         setOverScrolling();

@@ -38,17 +38,7 @@ public class NavigationViewPresenter extends MvpPresenter<NavigationViewView> {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 checkerPressedPointer = 1;
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-                super.onDrawerStateChanged(newState);
-                System.out.println("State: " + newState);
-            }
-
-            @Override
-            public void onConfigurationChanged(Configuration newConfig) {
-                super.onConfigurationChanged(newConfig);
+                actionBarDrawerData.getPointer().setRotation(180);
             }
 
             @Override
@@ -68,23 +58,34 @@ public class NavigationViewPresenter extends MvpPresenter<NavigationViewView> {
                 previousValueRight = currentValueRight;
                 currentValueRight = actionBarDrawerData.getNavigationView().getRight();
                 actionBarDrawerData.getPointer().post(new Runnable() {
-                    float countDegreeForIterationForRotate = (180f/actionBarDrawerData.getNavigationView().getWidth()) * Math.abs(currentValueRight-previousValueRight);
+                    float countDegreeForIterationForRotate = (180f/actionBarDrawerData.getNavigationView().getWidth()) * (currentValueRight - previousValueRight);
                     float i = 0;
                     @Override
                     public void run() {
-                        while(i < countDegreeForIterationForRotate){
-                            if((i + 1) > countDegreeForIterationForRotate){
-                                actionBarDrawerData.getPointer().setRotation(actionBarDrawerData.getPointer().getRotation() + (countDegreeForIterationForRotate - i));
-                                break;
+                        if (countDegreeForIterationForRotate > 0) {
+                            while(i < countDegreeForIterationForRotate){
+                                if((i + 1) > countDegreeForIterationForRotate){
+                                    actionBarDrawerData.getPointer().setRotation(actionBarDrawerData.getPointer().getRotation() + (countDegreeForIterationForRotate - i));
+                                    break;
+                                }
+                                actionBarDrawerData.getPointer().setRotation(
+                                        actionBarDrawerData.getPointer().getRotation() + 1);
+                                i++;
                             }
-                            actionBarDrawerData.getPointer().setRotation(
-                                    actionBarDrawerData.getPointer().getRotation() + 1);
-                            i++;
+                        } else {
+                            while(i > countDegreeForIterationForRotate){
+                                if((i - 1) < countDegreeForIterationForRotate){
+                                    actionBarDrawerData.getPointer().setRotation(actionBarDrawerData.getPointer().getRotation() + (countDegreeForIterationForRotate - i));
+                                    break;
+                                }
+                                actionBarDrawerData.getPointer().setRotation(
+                                        actionBarDrawerData.getPointer().getRotation() - 1);
+                                i--;
+                            }
                         }
                     }
                 });
             }
-
         };
         getViewState().setDrawerListener(actionBarDrawerToggle);
     }

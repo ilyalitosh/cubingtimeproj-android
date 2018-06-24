@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ic_chat_item_background"
+    android:clickable="true"
+    android:layout_marginBottom="3dp"
+    android:focusable="true">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:id="@+id/fragment_my_messages_chat_item_user_avatar"
+        android:src="@drawable/ic_chat_item_avatar_default"
+        app:riv_corner_radius="5dp"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_my_messages_chat_item_user_name_title"
+        android:hint="@string/activity_profile_profilename_title"
+        android:textColorHint="@color/colorMain"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/fragment_my_messages_chat_item_user_avatar"
+        android:layout_toEndOf="@id/fragment_my_messages_chat_item_user_avatar"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="25.06"
+        android:id="@+id/fragment_my_messages_chat_item_message_date"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_my_messages_chat_item_user_message"
+        android:layout_toRightOf="@id/fragment_my_messages_chat_item_user_avatar"
+        android:layout_toEndOf="@id/fragment_my_messages_chat_item_user_avatar"
+        android:layout_below="@id/fragment_my_messages_chat_item_user_name_title"
+        android:layout_toLeftOf="@id/fragment_my_messages_chat_item_message_date"
+        android:layout_toStartOf="@id/fragment_my_messages_chat_item_message_date"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="7dp"
+        android:hint="(You) Hello world!"/>
+
+</RelativeLayout>

@@ -41,7 +41,7 @@
     <android.support.design.widget.NavigationView
         android:layout_width="60dp"
         android:layout_height="match_parent"
-        android:id="@+id/_activity_base_navigation_view"
+        android:id="@+id/activity_base_navigation_view"
         android:background="@drawable/ic_navigation_menu_background"
         android:layout_gravity="start"
         menu:menu="@menu/navigation_menu">

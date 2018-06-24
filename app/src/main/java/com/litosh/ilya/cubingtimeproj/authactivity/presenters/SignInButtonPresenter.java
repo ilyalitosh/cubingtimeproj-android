@@ -25,8 +25,8 @@ public class SignInButtonPresenter extends MvpPresenter<SignInButtonView> {
     private static final String TAG = "SignInButtonPresenter";
 
     public void signIn(UserSignInModel userSignInModel) {
-        getViewState().showProgressDialog();
         if (userSignInModel != null) {
+            getViewState().showProgressDialog();
             ApiService.authorizate(
                     userSignInModel.getEmail(),
                     userSignInModel.getPass(),

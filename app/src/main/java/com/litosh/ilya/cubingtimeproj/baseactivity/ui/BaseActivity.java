@@ -8,6 +8,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.AppCompatImageView;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -16,6 +17,7 @@ import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.baseactivity.models.ActionBarDrawerData;
 import com.litosh.ilya.cubingtimeproj.baseactivity.presenters.NavigationViewPresenter;
 import com.litosh.ilya.cubingtimeproj.baseactivity.views.NavigationViewView;
+import com.litosh.ilya.cubingtimeproj.mymessagesactivity.ui.MyMessagesActivity;
 import com.litosh.ilya.cubingtimeproj.myprofileactivity.ui.MyProfileActivity;
 
 /**
@@ -32,6 +34,7 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
     private NavigationView mNavigationView;
     private RelativeLayout mPointerSpace;
     private AppCompatImageView mPointer;
+    private RelativeLayout mFragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,10 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
     public void initActivityComponents() {
         mDrawerLayout = findViewById(R.id.activity_base_drawer_layout);
         mDrawerLayout.setScrimColor(Color.TRANSPARENT);
-        mNavigationView = findViewById(R.id._activity_base_navigation_view);
+        mNavigationView = findViewById(R.id.activity_base_navigation_view);
         mPointerSpace = findViewById(R.id.activity_base_pointer_space);
         mPointer = findViewById(R.id.activity_base_pointer);
+        mFragmentContainer = findViewById(R.id.activity_base_fragment_container);
     }
 
     public void initActivityListeners() {
@@ -58,15 +62,28 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
         mNavigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navigation_menu_my_profile:
-                    Intent intent = new Intent(this, MyProfileActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    Intent intentMyProfile =
+                            new Intent(this, MyProfileActivity.class);
+                    intentMyProfile.setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentMyProfile);
+                    break;
+                case R.id.navigation_menu_my_messages:
+                    Intent intentMyMessages =
+                            new Intent(this, MyMessagesActivity.class);
+                    intentMyMessages.setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentMyMessages);
                     break;
             }
             mDrawerLayout.closeDrawer(GravityCompat.START);
             return false;
         });
         mNavigationViewPresenter.setDrawerListener(getActionBarDrawerData());
+    }
+
+    public RelativeLayout getFragmentContainer() {
+        return mFragmentContainer;
     }
 
     private ActionBarDrawerData getActionBarDrawerData() {

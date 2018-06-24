@@ -7,5 +7,11 @@
         android:icon="@drawable/ic_my_profile">
 
     </item>
+    <item
+        android:title=""
+        android:id="@+id/navigation_menu_my_messages"
+        android:icon="@drawable/ic_my_messages">
+
+    </item>
 
 </menu>

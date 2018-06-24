@@ -31,6 +31,16 @@
             android:name=".baseactivity.ui.BaseActivity">
 
         </activity>
+        <activity
+            android:name=".mymessagesactivity.ui.MyMessagesActivity"
+            android:theme="@style/AppThemeNoActionBar">
+
+        </activity>
+        <activity
+            android:name=".chatactivity.ui.ChatActivity"
+            android:theme="@style/AppThemeNoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
