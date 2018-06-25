@@ -17,14 +17,15 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="2dp"
-            android:id="@+id/fragment_chat_room_footer_space_chat_avatar"
+            app:riv_corner_radius="0dp"
+            android:id="@+id/fragment_chat_room_header_space_chat_avatar"
             android:src="@drawable/ic_chat_item_avatar_default"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_toRightOf="@id/fragment_chat_room_footer_space_chat_avatar"
-            android:layout_toEndOf="@id/fragment_chat_room_footer_space_chat_avatar"
+            android:layout_toRightOf="@id/fragment_chat_room_header_space_chat_avatar"
+            android:layout_toEndOf="@id/fragment_chat_room_header_space_chat_avatar"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             android:layout_centerVertical="true">
@@ -32,11 +33,13 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/fragment_chat_room_header_space_chat_name"
                 android:textSize="17sp"
                 android:hint="Илья Литош"/>
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/fragment_chat_room_header_space_chat_activity"
                 android:hint="онлайн"/>
 
         </LinearLayout>
@@ -47,6 +50,14 @@
         android:layout_height="match_parent"
         android:layout_below="@id/fragment_chat_room_header_space"
         android:layout_above="@id/fragment_chat_room_footer_space">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_chat_room_messages_list">
+
+
+        </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
 
@@ -69,21 +80,26 @@
                 android:layout_marginTop="1dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:hint="Введите сообщение"
+                android:paddingTop="4dp"
+                android:paddingBottom="3dp"
+                android:id="@+id/fragment_chat_room_footer_space_input_message_text"
+                android:hint="@string/fragment_chat_room_footer_space_input_message_text"
                 android:textSize="16sp" />
 
         </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:id="@+id/fragment_chat_room_footer_space_button_send_space"
+            android:visibility="gone">
 
             <android.support.v7.widget.AppCompatButton
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:id="@+id/fragment_chat_room_footer_space_button_send"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="13dp"
+                android:layout_marginEnd="13dp"
                 android:background="@drawable/ic_send" />
 
         </RelativeLayout>

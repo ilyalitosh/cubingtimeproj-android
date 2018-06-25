@@ -17,5 +17,6 @@
     <string name="activity_profile_user_friends_default_hint">Friends\u0020</string>
     <string name="activity_profile_user_friends_default_value_0">0</string>
     <string name="activity_profile_activity_title_default">offline</string>
+    <string name="fragment_chat_room_footer_space_input_message_text">Введите сообщение...</string>
 
 </resources>

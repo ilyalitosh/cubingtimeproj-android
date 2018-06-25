@@ -23,7 +23,7 @@
         <RelativeLayout
             android:layout_width="25dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/activity_base_pointer_space"
             android:background="@drawable/ic_module_pointer_background">
 
