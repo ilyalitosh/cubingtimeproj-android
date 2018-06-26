@@ -1,5 +1,8 @@
 package com.litosh.ilya.cubingtimeproj.chatfragment.ui;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
@@ -10,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -17,12 +21,18 @@ import android.widget.RelativeLayout;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.facebook.rebound.SimpleSpringListener;
+import com.facebook.rebound.Spring;
+import com.facebook.rebound.SpringConfig;
+import com.facebook.rebound.SpringSystem;
 import com.litosh.ilya.ct_sdk.models.messages.Message;
 import com.litosh.ilya.cubingtimeproj.R;
+import com.litosh.ilya.cubingtimeproj.chatfragment.models.ChatMessagesData;
 import com.litosh.ilya.cubingtimeproj.chatfragment.models.adapters.ChatMessagesListAdapter;
 import com.litosh.ilya.cubingtimeproj.chatfragment.presenters.ChatMessagesListPresenter;
 import com.litosh.ilya.cubingtimeproj.chatfragment.views.ChatMessagesListView;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
 
@@ -46,6 +56,7 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
     private AppCompatButton mSendMessageButton;
     private RecyclerView mMessagesList;
     private ChatMessagesListAdapter mChatMessagesListAdapter;
+    private ChatMessagesData mChatMessagesData;
 
     @Nullable
     @Override
@@ -64,8 +75,10 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
     private void initComponents(View view) {
         mChatImage =
                 view.findViewById(R.id.fragment_chat_room_header_space_chat_avatar);
+        Picasso.get().load(Uri.parse(mChatMessagesData.getChatImageUrl())).into(mChatImage);
         mChatName =
                 view.findViewById(R.id.fragment_chat_room_header_space_chat_name);
+        mChatName.setHint(mChatMessagesData.getChatName());
         mChatActivity =
                 view.findViewById(R.id.fragment_chat_room_header_space_chat_activity);
         mInputMessage =
@@ -76,7 +89,7 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
                 view.findViewById(R.id.fragment_chat_room_footer_space_button_send_space);
         mMessagesList =
                 view.findViewById(R.id.fragment_chat_room_messages_list);
-        mChatMessagesListPresenter.initChatMessagesList("11329");
+        mChatMessagesListPresenter.initChatMessagesList(mChatMessagesData.getChatId());
     }
 
     private void initListeners() {
@@ -106,6 +119,39 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
             public void afterTextChanged(Editable editable) {
             }
         });
+        SpringSystem springSystem = SpringSystem.create();
+        SpringConfig springConfig = new SpringConfig(300, 10);
+        Spring spring = springSystem.createSpring();
+        spring.setSpringConfig(springConfig);
+        spring.addListener(new SimpleSpringListener() {
+            @Override
+            public void onSpringUpdate(Spring spring) {
+                float value = (float) spring.getCurrentValue();
+                float scale = 1f - (value * 0.5f);
+                mSendMessageButton.setScaleX(scale);
+                mSendMessageButton.setScaleY(scale);
+            }
+        });
+
+        mSendMessageButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        spring.setEndValue(1);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        spring.setEndValue(0);
+                        break;
+                }
+                return false;
+            }
+
+        });
+    }
+
+    public void setChatMessagesData(ChatMessagesData mChatMessagesData) {
+        this.mChatMessagesData = mChatMessagesData;
     }
 
     @Override
@@ -115,5 +161,6 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
         mMessagesList.setAdapter(mChatMessagesListAdapter);
         OverScrollDecoratorHelper
                 .setUpOverScroll(mMessagesList, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+        mMessagesList.scrollToPosition(mChatMessagesListAdapter.getItemCount() - 1);
     }
 }

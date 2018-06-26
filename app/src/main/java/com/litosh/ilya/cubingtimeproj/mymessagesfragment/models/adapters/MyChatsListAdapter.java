@@ -3,6 +3,7 @@ package com.litosh.ilya.cubingtimeproj.mymessagesfragment.models.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +56,15 @@ public class MyChatsListAdapter extends RecyclerView.Adapter<MyChatsListAdapter.
                 .into(holder.mUserAvatar);
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(mLayoutInflater.getContext(), ChatActivity.class);
+            intent.putExtra(
+                    "chatId",
+                    mChatLinkedList.get(holder.getAdapterPosition()).getChatId());
+            intent.putExtra(
+                    "chatName",
+                    mChatLinkedList.get(holder.getAdapterPosition()).getChatName());
+            intent.putExtra(
+                    "urlChatImage",
+                    mChatLinkedList.get(holder.getAdapterPosition()).getUrlChatImage());
             mLayoutInflater.getContext().startActivity(intent);
         });
     }

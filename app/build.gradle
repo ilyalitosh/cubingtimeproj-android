@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.github.stfalcon:frescoimageviewer:0.5.0'
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    // Rebound
+    implementation 'com.facebook.rebound:rebound:0.3.8'
     //
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
