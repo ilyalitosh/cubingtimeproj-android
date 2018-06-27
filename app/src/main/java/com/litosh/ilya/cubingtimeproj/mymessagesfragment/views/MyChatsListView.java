@@ -20,4 +20,12 @@ public interface MyChatsListView extends MvpView {
      */
     void setMyChatListAdapter(LinkedList<Chat> chatLinkedList);
 
+    /**
+     * Вызывается при получении нового сообщения
+     * и обновляет чат
+     *
+     * @param chat Chat модель
+     */
+    void updateMyChatListAfterNewMessage(Chat chat);
+
 }

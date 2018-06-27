@@ -29,6 +29,7 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsListView {
 
+
     @InjectPresenter
     MyChatsListPresenter mMyChatsListPresenter;
     private static final String TAG = "MyMessagesFragment";
@@ -54,7 +55,6 @@ public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsL
         mMyChatsList = view.findViewById(R.id.fragment_my_messages_chats_list);
         mSwipeRefreshLayout = view.findViewById(R.id.fragment_my_messages_swipe_refresh_layout);
         setCustomSwipeRefreshLayoutStyle();
-
         mMyChatsListPresenter.setMyChatsListAdapter();
     }
 
@@ -69,6 +69,7 @@ public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsL
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mMyChatsListPresenter.setMyChatsListAdapter();
         });
+        mMyChatsListPresenter.listenNewMessagesInChatsList();
     }
 
     @Override
@@ -79,5 +80,10 @@ public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsL
         OverScrollDecoratorHelper
                 .setUpOverScroll(mMyChatsList, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void updateMyChatListAfterNewMessage(Chat chat) {
+        mMyChatsListAdapter.updateChat(chat);
     }
 }

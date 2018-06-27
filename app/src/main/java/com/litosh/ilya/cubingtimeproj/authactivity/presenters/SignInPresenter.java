@@ -5,7 +5,7 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.litosh.ilya.ct_sdk.api.ApiService;
-import com.litosh.ilya.ct_sdk.callbacks.OnUserAuthorizateListener;
+import com.litosh.ilya.ct_sdk.callbacks.OnUserAuthorizateCallback;
 import com.litosh.ilya.ct_sdk.models.Cookie;
 import com.litosh.ilya.cubingtimeproj.authactivity.views.SignInButtonView;
 import com.litosh.ilya.cubingtimeproj.db.DbService;
@@ -47,7 +47,7 @@ public class SignInPresenter extends MvpPresenter<SignInButtonView> {
         ApiService.authorizate(
                 userCache.getEmail(),
                 userCache.getPass(),
-                new OnUserAuthorizateListener() {
+                new OnUserAuthorizateCallback() {
                     @Override
                     public void onSuccess(Cookie cookie, String userId) {
                         initUserCookie(cookie, userId);

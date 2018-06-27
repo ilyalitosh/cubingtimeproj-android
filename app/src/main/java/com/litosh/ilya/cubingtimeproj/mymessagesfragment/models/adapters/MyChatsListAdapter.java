@@ -3,7 +3,7 @@ package com.litosh.ilya.cubingtimeproj.mymessagesfragment.models.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -67,6 +67,21 @@ public class MyChatsListAdapter extends RecyclerView.Adapter<MyChatsListAdapter.
                     mChatLinkedList.get(holder.getAdapterPosition()).getUrlChatImage());
             mLayoutInflater.getContext().startActivity(intent);
         });
+        if (mChatLinkedList.get(holder.getAdapterPosition()).isContainsNewMessage()) {
+            holder.mNewMessageIndicator.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void updateChat(Chat chat) {
+        for (Chat chat1: mChatLinkedList) {
+            if (chat1.getChatId().equals(chat.getChatId())) {
+                chat1.setChatLastMessage(chat.getChatLastMessage());
+                chat1.setChatTime(chat.getChatTime());
+                chat1.setContainsNewMessage(chat.isContainsNewMessage());
+                break;
+            }
+        }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -80,6 +95,7 @@ public class MyChatsListAdapter extends RecyclerView.Adapter<MyChatsListAdapter.
         RoundedImageView mUserAvatar;
         AppCompatTextView mUserMessage;
         AppCompatTextView mUserMessageDate;
+        AppCompatImageView mNewMessageIndicator;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -91,6 +107,8 @@ public class MyChatsListAdapter extends RecyclerView.Adapter<MyChatsListAdapter.
                     itemView.findViewById(R.id.fragment_my_messages_chat_item_user_message);
             mUserMessageDate =
                     itemView.findViewById(R.id.fragment_my_messages_chat_item_message_date);
+            mNewMessageIndicator =
+                    itemView.findViewById(R.id.fragment_my_messages_chat_item_is_new_message);
         }
     }
 

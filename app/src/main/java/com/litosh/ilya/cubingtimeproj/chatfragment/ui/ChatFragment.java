@@ -119,6 +119,10 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
             public void afterTextChanged(Editable editable) {
             }
         });
+        initSpringListenerWithSendButton();
+    }
+
+    private void initSpringListenerWithSendButton() {
         SpringSystem springSystem = SpringSystem.create();
         SpringConfig springConfig = new SpringConfig(300, 10);
         Spring spring = springSystem.createSpring();
@@ -132,7 +136,6 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
                 mSendMessageButton.setScaleY(scale);
             }
         });
-
         mSendMessageButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
