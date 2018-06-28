@@ -27,7 +27,6 @@ public class MyChatsListPresenter extends MvpPresenter<MyChatsListView> {
         ApiService.listenNewMessagesInChatsList(
                 new UserCookie(),
                 chat -> {
-                    System.out.println("doroy");
                     getViewState().updateMyChatListAfterNewMessage(chat);
                 });
     }

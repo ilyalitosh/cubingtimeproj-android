@@ -2,6 +2,7 @@ package com.litosh.ilya.cubingtimeproj.chatactivity.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.litosh.ilya.cubingtimeproj.baseactivity.ui.BaseActivity;
 import com.litosh.ilya.cubingtimeproj.chatfragment.models.ChatMessagesData;

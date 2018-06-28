@@ -8,7 +8,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.AppCompatImageView;
-import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -53,6 +52,16 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
         mPointerSpace = findViewById(R.id.activity_base_pointer_space);
         mPointer = findViewById(R.id.activity_base_pointer);
         mFragmentContainer = findViewById(R.id.activity_base_fragment_container);
+        initMenuIcons();
+    }
+
+    private void initMenuIcons() {
+        AppCompatImageView profileIcon = new AppCompatImageView(this);
+        profileIcon.setImageResource(R.drawable.ic_my_profile);
+        mNavigationView.getMenu().getItem(0).setActionView(profileIcon);
+        AppCompatImageView myMessagesIcon = new AppCompatImageView(this);
+        myMessagesIcon.setImageResource(R.drawable.ic_my_messages);
+        mNavigationView.getMenu().getItem(1).setActionView(myMessagesIcon);
     }
 
     public void initActivityListeners() {
@@ -67,6 +76,7 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
                     intentMyProfile.setFlags(
                             Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMyProfile);
+                    overridePendingTransition(R.anim.anim_activity_show, R.anim.anim_activity_hide);
                     break;
                 case R.id.navigation_menu_my_messages:
                     Intent intentMyMessages =
@@ -74,6 +84,7 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
                     intentMyMessages.setFlags(
                             Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMyMessages);
+                    overridePendingTransition(R.anim.anim_activity_show, R.anim.anim_activity_hide);
                     break;
             }
             mDrawerLayout.closeDrawer(GravityCompat.START);

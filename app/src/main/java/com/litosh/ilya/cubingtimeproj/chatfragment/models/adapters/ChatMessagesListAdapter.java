@@ -62,14 +62,28 @@ public class ChatMessagesListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MessagesMeViewHolder) {
-            ((MessagesMeViewHolder) holder)
-                    .mMeMessage
-                    .setHint(mMessages.get(holder.getAdapterPosition()).getMessageText());
+            initMessagesMeViewComponents(holder);
         } else if (holder instanceof MessagesOtherUserViewHolder) {
-            ((MessagesOtherUserViewHolder) holder)
-                    .mOtherUserMessage
-                    .setHint(mMessages.get(holder.getAdapterPosition()).getMessageText());
+            initMessagesOtherUserViewComponents(holder);
         }
+    }
+
+    private void initMessagesMeViewComponents(RecyclerView.ViewHolder holder) {
+        ((MessagesMeViewHolder) holder)
+                .mMeMessage
+                .setHint(mMessages.get(holder.getAdapterPosition()).getMessageText());
+        ((MessagesMeViewHolder) holder)
+                .mMeMessageDate
+                .setHint(mMessages.get(holder.getAdapterPosition()).getMessageTime());
+    }
+
+    private void initMessagesOtherUserViewComponents(RecyclerView.ViewHolder holder) {
+        ((MessagesOtherUserViewHolder) holder)
+                .mOtherUserMessage
+                .setHint(mMessages.get(holder.getAdapterPosition()).getMessageText());
+        ((MessagesOtherUserViewHolder) holder)
+                .mOtherUserMessageDate
+                .setHint(mMessages.get(holder.getAdapterPosition()).getMessageTime());
     }
 
     @Override
@@ -77,26 +91,37 @@ public class ChatMessagesListAdapter extends RecyclerView.Adapter {
         return mMessages.size();
     }
 
+    public void addItem(Message message) {
+        mMessages.add(message);
+        notifyDataSetChanged();
+    }
+
 
     class MessagesMeViewHolder extends RecyclerView.ViewHolder {
 
         AppCompatTextView mMeMessage;
+        AppCompatTextView mMeMessageDate;
 
         MessagesMeViewHolder(View itemView) {
             super(itemView);
             mMeMessage =
                     itemView.findViewById(R.id.fragment_chat_room_message_item_me_message_text);
+            mMeMessageDate =
+                    itemView.findViewById(R.id.fragment_chat_room_message_item_me_message_date);
         }
     }
 
     class MessagesOtherUserViewHolder extends RecyclerView.ViewHolder {
 
         AppCompatTextView mOtherUserMessage;
+        AppCompatTextView mOtherUserMessageDate;
 
         MessagesOtherUserViewHolder(View itemView) {
             super(itemView);
             mOtherUserMessage =
                     itemView.findViewById(R.id.fragment_chat_room_message_item_other_user_message_text);
+            mOtherUserMessageDate =
+                    itemView.findViewById(R.id.fragment_chat_room_message_item_other_user_message_date);
         }
     }
 

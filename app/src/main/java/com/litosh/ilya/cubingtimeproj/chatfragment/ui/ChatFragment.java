@@ -1,7 +1,6 @@
 package com.litosh.ilya.cubingtimeproj.chatfragment.ui;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.animation.Animator;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +10,9 @@ import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,12 +26,16 @@ import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
+import com.litosh.ilya.ct_sdk.api.ApiService;
+import com.litosh.ilya.ct_sdk.callbacks.OnMessageSendingCallback;
 import com.litosh.ilya.ct_sdk.models.messages.Message;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.chatfragment.models.ChatMessagesData;
 import com.litosh.ilya.cubingtimeproj.chatfragment.models.adapters.ChatMessagesListAdapter;
 import com.litosh.ilya.cubingtimeproj.chatfragment.presenters.ChatMessagesListPresenter;
 import com.litosh.ilya.cubingtimeproj.chatfragment.views.ChatMessagesListView;
+import com.litosh.ilya.cubingtimeproj.globalmodels.InputFormsChecker;
+import com.litosh.ilya.cubingtimeproj.globalmodels.UserCookie;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
@@ -44,10 +49,11 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
  * Created by ilya_ on 24.06.2018.
  */
 
-public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesListView {
+public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesListView, InputFormsChecker {
 
     @InjectPresenter
     ChatMessagesListPresenter mChatMessagesListPresenter;
+    private static final String TAG = "ChatFragment";
     private RoundedImageView mChatImage;
     private AppCompatTextView mChatName;
     private AppCompatTextView mChatActivity;
@@ -120,6 +126,28 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
             }
         });
         initSpringListenerWithSendButton();
+        mSendMessageButton.setOnClickListener(v -> {
+            if (!isSomeEmpty()) {
+                ApiService.sendMessage(
+                        new UserCookie(),
+                        mInputMessage.getText().toString(),
+                        mChatMessagesData.getChatId(),
+                        new OnMessageSendingCallback() {
+                            @Override
+                            public void onSuccess(Message message) {
+                                mChatMessagesListAdapter.addItem(message);
+                                mInputMessage.setText("");
+                                mMessagesList.smoothScrollToPosition(
+                                        mChatMessagesListAdapter.getItemCount());
+                            }
+
+                            @Override
+                            public void onError(String error) {
+                                Log.i(TAG, error);
+                            }
+                        });
+            }
+        });
     }
 
     private void initSpringListenerWithSendButton() {
@@ -165,5 +193,13 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
         OverScrollDecoratorHelper
                 .setUpOverScroll(mMessagesList, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         mMessagesList.scrollToPosition(mChatMessagesListAdapter.getItemCount() - 1);
+    }
+
+    @Override
+    public boolean isSomeEmpty() {
+        if (TextUtils.isEmpty(mInputMessage.getText())) {
+            return true;
+        }
+        return false;
     }
 }
