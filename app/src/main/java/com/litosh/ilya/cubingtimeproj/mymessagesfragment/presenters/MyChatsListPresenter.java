@@ -1,5 +1,7 @@
 package com.litosh.ilya.cubingtimeproj.mymessagesfragment.presenters;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.litosh.ilya.ct_sdk.api.ApiService;
@@ -15,6 +17,8 @@ import com.litosh.ilya.cubingtimeproj.mymessagesfragment.views.MyChatsListView;
 @InjectViewState
 public class MyChatsListPresenter extends MvpPresenter<MyChatsListView> {
 
+    private static final String TAG = "MyChatsListPresenter";
+
     public void setMyChatsListAdapter() {
         ApiService.getChats(
                 new UserCookie(),
@@ -27,6 +31,7 @@ public class MyChatsListPresenter extends MvpPresenter<MyChatsListView> {
         ApiService.listenNewMessagesInChatsList(
                 new UserCookie(),
                 chat -> {
+                    Log.i(TAG, chat.getChatLastMessage());
                     getViewState().updateMyChatListAfterNewMessage(chat);
                 });
     }

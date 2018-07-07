@@ -1,6 +1,5 @@
 package com.litosh.ilya.cubingtimeproj.chatfragment.ui;
 
-import android.animation.Animator;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -33,7 +32,9 @@ import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.chatfragment.models.ChatMessagesData;
 import com.litosh.ilya.cubingtimeproj.chatfragment.models.adapters.ChatMessagesListAdapter;
 import com.litosh.ilya.cubingtimeproj.chatfragment.presenters.ChatMessagesListPresenter;
+import com.litosh.ilya.cubingtimeproj.chatfragment.presenters.NewMessagesPresenter;
 import com.litosh.ilya.cubingtimeproj.chatfragment.views.ChatMessagesListView;
+import com.litosh.ilya.cubingtimeproj.chatfragment.views.NewMessagesView;
 import com.litosh.ilya.cubingtimeproj.globalmodels.InputFormsChecker;
 import com.litosh.ilya.cubingtimeproj.globalmodels.UserCookie;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -49,8 +50,11 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
  * Created by ilya_ on 24.06.2018.
  */
 
-public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesListView, InputFormsChecker {
+public class ChatFragment extends MvpAppCompatFragment
+        implements ChatMessagesListView, InputFormsChecker, NewMessagesView {
 
+    @InjectPresenter
+    NewMessagesPresenter mNewMessagesPresenter;
     @InjectPresenter
     ChatMessagesListPresenter mChatMessagesListPresenter;
     private static final String TAG = "ChatFragment";
@@ -148,6 +152,7 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
                         });
             }
         });
+        mNewMessagesPresenter.initListenerNewMessages();
     }
 
     private void initSpringListenerWithSendButton() {
@@ -201,5 +206,10 @@ public class ChatFragment extends MvpAppCompatFragment implements ChatMessagesLi
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void updateMessagesList(Message message) {
+        mChatMessagesListAdapter.addItem(message);
     }
 }

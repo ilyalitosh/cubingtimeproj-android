@@ -2,6 +2,7 @@ package com.litosh.ilya.cubingtimeproj.mymessagesfragment.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.litosh.ilya.ct_sdk.api.ApiService;
 import com.litosh.ilya.ct_sdk.models.messages.Chat;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.mymessagesfragment.models.adapters.MyChatsListAdapter;
@@ -85,5 +87,11 @@ public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsL
     @Override
     public void updateMyChatListAfterNewMessage(Chat chat) {
         mMyChatsListAdapter.updateChat(chat);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ApiService.stopListenNewMessagesInChatsList();
     }
 }
