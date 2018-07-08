@@ -140,9 +140,9 @@ public class ChatFragment extends MvpAppCompatFragment
                             @Override
                             public void onSuccess(Message message) {
                                 mChatMessagesListAdapter.addItem(message);
+                                mMessagesList.scrollToPosition(
+                                        mChatMessagesListAdapter.getItemCount() - 1);
                                 mInputMessage.setText("");
-                                mMessagesList.smoothScrollToPosition(
-                                        mChatMessagesListAdapter.getItemCount());
                             }
 
                             @Override
@@ -152,7 +152,7 @@ public class ChatFragment extends MvpAppCompatFragment
                         });
             }
         });
-        mNewMessagesPresenter.initListenerNewMessages();
+        mNewMessagesPresenter.initListenerNewMessages(mChatMessagesData);
     }
 
     private void initSpringListenerWithSendButton() {
@@ -211,5 +211,6 @@ public class ChatFragment extends MvpAppCompatFragment
     @Override
     public void updateMessagesList(Message message) {
         mChatMessagesListAdapter.addItem(message);
+        mMessagesList.scrollToPosition(mChatMessagesListAdapter.getItemCount() - 1);
     }
 }

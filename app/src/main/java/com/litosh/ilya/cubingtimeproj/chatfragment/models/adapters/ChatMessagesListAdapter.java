@@ -93,7 +93,7 @@ public class ChatMessagesListAdapter extends RecyclerView.Adapter {
 
     public void addItem(Message message) {
         mMessages.add(message);
-        notifyDataSetChanged();
+        notifyItemInserted(getItemCount() - 1);
     }
 
 

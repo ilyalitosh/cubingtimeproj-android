@@ -112,4 +112,11 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
         mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
+
+    @Override
+    public void onEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
+
+    }
+
 }
