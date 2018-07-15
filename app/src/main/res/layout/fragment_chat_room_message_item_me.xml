@@ -22,7 +22,7 @@
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="12dp"
                 android:id="@+id/fragment_chat_room_message_item_me_message_text"
                 android:textSize="18sp"
                 android:hint="1111111111111111111111"/>
@@ -33,7 +33,7 @@
                 android:layout_below="@id/fragment_chat_room_message_item_me_message_text"
                 android:textStyle="italic"
                 android:textSize="12sp"
-                android:layout_margin="6dp"
+                android:layout_margin="10dp"
                 android:hint="27 июня 2018 в 23:07" />
 
         </RelativeLayout>
