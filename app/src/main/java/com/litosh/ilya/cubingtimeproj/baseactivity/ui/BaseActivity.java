@@ -69,6 +69,7 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
             mDrawerLayout.openDrawer(GravityCompat.START);
         });
         mNavigationView.setNavigationItemSelectedListener(item -> {
+            //mDrawerLayout.closeDrawer(GravityCompat.START);
             switch (item.getItemId()) {
                 case R.id.navigation_menu_my_profile:
                     Intent intentMyProfile =
@@ -87,7 +88,6 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
                     overridePendingTransition(R.anim.anim_activity_show, R.anim.anim_activity_hide);
                     break;
             }
-            mDrawerLayout.closeDrawer(GravityCompat.START);
             return false;
         });
         mNavigationViewPresenter.setDrawerListener(getActionBarDrawerData());
@@ -111,12 +111,6 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
     public void setDrawerListener(ActionBarDrawerToggle actionBarDrawerToggle) {
         mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onEnterAnimationComplete() {
-        super.onEnterAnimationComplete();
-
     }
 
 }

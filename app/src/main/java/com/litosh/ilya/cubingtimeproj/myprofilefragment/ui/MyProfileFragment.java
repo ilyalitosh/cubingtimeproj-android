@@ -7,7 +7,6 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -36,7 +35,6 @@ public class MyProfileFragment extends MvpAppCompatFragment
     UserAvatarContainerPresenter mUserAvatarContainerPresenter;
     @InjectPresenter
     UserInfoTextViewsPresenter mUserInfoTextViewsPresenter;
-    private RelativeLayout mFragmentContainer;
     private AppCompatTextView mProfileName;
     private AppCompatTextView mActivity;
     private AppCompatTextView mCountry;
@@ -62,7 +60,6 @@ public class MyProfileFragment extends MvpAppCompatFragment
     }
 
     private void initComponents(View view) {
-        mFragmentContainer = view.findViewById(R.id.activity_base_fragment_container);
         mProfileName = view.findViewById(R.id.activity_profile_profilename_title);
         mActivity = view.findViewById(R.id.activity_profile_activity_title);
         mCountry = view.findViewById(R.id.activity_profile_user_info_country_title);
