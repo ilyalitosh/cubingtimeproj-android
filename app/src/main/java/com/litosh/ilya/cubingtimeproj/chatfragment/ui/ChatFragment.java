@@ -76,10 +76,35 @@ public class ChatFragment extends MvpAppCompatFragment
 
         View view = inflater.inflate(R.layout.fragment_chat_room, null);
 
+        if (savedInstanceState != null) {
+            Log.i(TAG, "state restored");
+            restoreChatMessageDataFromBundle(savedInstanceState);
+        }
+
         initComponents(view);
         initListeners();
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "state saved");
+        saveChatMessageDataInBundle(outState);
+    }
+
+    private void saveChatMessageDataInBundle(Bundle outState) {
+        outState.putString("ct-chat-room-chat-id", mChatMessagesData.getChatId());
+        outState.putString("ct-chat-room-chat-image-url", mChatMessagesData.getChatImageUrl());
+        outState.putString("ct-chat-room-chat-name", mChatMessagesData.getChatName());
+    }
+
+    private void restoreChatMessageDataFromBundle(Bundle savedInstanceState) {
+        mChatMessagesData = new ChatMessagesData();
+        mChatMessagesData.setChatId(savedInstanceState.getString("ct-chat-room-chat-id"));
+        mChatMessagesData.setChatImageUrl(savedInstanceState.getString("ct-chat-room-chat-image-url"));
+        mChatMessagesData.setChatName(savedInstanceState.getString("ct-chat-room-chat-name"));
     }
 
     private void initComponents(View view) {
