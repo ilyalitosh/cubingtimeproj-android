@@ -11,12 +11,14 @@ import android.widget.ScrollView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.litosh.ilya.ct_sdk.models.User;
+import com.litosh.ilya.ct_sdk.models.profile.Note;
+import com.litosh.ilya.ct_sdk.models.profile.User;
+import com.litosh.ilya.ct_sdk.models.profile.Wall;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.UserAvatarContainerPresenter;
-import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.UserInfoTextViewsPresenter;
+import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.UserProfilePresenter;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserAvatarContainerView;
-import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserInfoTextViewsView;
+import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserProfileView;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.RequestCreator;
 
@@ -25,16 +27,16 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 /**
  * MyProfileFragment
  *
- * Created by ilya_ on 24.06.2018.
+ * @author Ilya Litosh
  */
 
 public class MyProfileFragment extends MvpAppCompatFragment
-        implements UserInfoTextViewsView, UserAvatarContainerView {
+        implements UserProfileView, UserAvatarContainerView {
 
     @InjectPresenter
     UserAvatarContainerPresenter mUserAvatarContainerPresenter;
     @InjectPresenter
-    UserInfoTextViewsPresenter mUserInfoTextViewsPresenter;
+    UserProfilePresenter mUserProfilePresenter;
     private AppCompatTextView mProfileName;
     private AppCompatTextView mActivity;
     private AppCompatTextView mCountry;
@@ -73,12 +75,13 @@ public class MyProfileFragment extends MvpAppCompatFragment
         mProfileScrollView = view.findViewById(R.id.activity_profile_scroll_view_profile);
         setOverScrolling();
 
-        mUserInfoTextViewsPresenter.initUserInfo();
+        mSwipeRefreshLayout.setRefreshing(true);
+        mUserProfilePresenter.initUserProfile();
     }
 
     private void initListeners() {
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
-            mUserInfoTextViewsPresenter.initUserInfo();
+            mUserProfilePresenter.initUserProfile();
         });
     }
 
@@ -94,7 +97,7 @@ public class MyProfileFragment extends MvpAppCompatFragment
     }
 
     @Override
-    public void initUserInfoTextViews(User user) {
+    public void initializeUserInfoTextViews(User user) {
         mProfileName.setHint(user.getProfileName());
         mActivity.setHint(user.getActivity());
         mCountry.setHint(user.getCountry());
@@ -104,6 +107,13 @@ public class MyProfileFragment extends MvpAppCompatFragment
         mFriends.setHint(user.getFriendsCount());
         mUserAvatarContainerPresenter.setAvatar(user);
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void initializeUserWall(Wall wall) {
+        for (Note note: wall) {
+            System.out.println(note.isUserOnline() + ", " + note.getUserName());
+        }
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.net.Uri;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.litosh.ilya.ct_sdk.models.User;
+import com.litosh.ilya.ct_sdk.models.profile.User;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserAvatarContainerView;
 import com.squareup.picasso.Picasso;
 
