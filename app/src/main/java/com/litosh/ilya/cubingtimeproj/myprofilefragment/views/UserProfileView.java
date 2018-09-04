@@ -25,4 +25,10 @@ public interface UserProfileView extends MvpView {
      */
     void initializeUserWall(Wall wall);
 
+    /**
+     * Вызывается, чтобы убрать прогрессбар
+     *
+     */
+    void hideProgressBar();
+
 }

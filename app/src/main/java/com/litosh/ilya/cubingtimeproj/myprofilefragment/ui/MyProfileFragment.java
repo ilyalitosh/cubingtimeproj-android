@@ -2,8 +2,11 @@ package com.litosh.ilya.cubingtimeproj.myprofilefragment.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import com.litosh.ilya.ct_sdk.models.profile.Note;
 import com.litosh.ilya.ct_sdk.models.profile.User;
 import com.litosh.ilya.ct_sdk.models.profile.Wall;
 import com.litosh.ilya.cubingtimeproj.R;
+import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.adapters.NotesListAdapter;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.UserAvatarContainerPresenter;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.UserProfilePresenter;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserAvatarContainerView;
@@ -37,16 +41,6 @@ public class MyProfileFragment extends MvpAppCompatFragment
     UserAvatarContainerPresenter mUserAvatarContainerPresenter;
     @InjectPresenter
     UserProfilePresenter mUserProfilePresenter;
-    private AppCompatTextView mProfileName;
-    private AppCompatTextView mActivity;
-    private AppCompatTextView mCountry;
-    private AppCompatTextView mCity;
-    private AppCompatTextView mSex;
-    private AppCompatTextView mWca;
-    private AppCompatTextView mFriends;
-    private RoundedImageView mAvatarContainer;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private ScrollView mProfileScrollView;
 
     @Nullable
     @Override
@@ -61,6 +55,17 @@ public class MyProfileFragment extends MvpAppCompatFragment
         return view;
     }
 
+    private AppCompatTextView mProfileName;
+    private AppCompatTextView mActivity;
+    private AppCompatTextView mCountry;
+    private AppCompatTextView mCity;
+    private AppCompatTextView mSex;
+    private AppCompatTextView mWca;
+    private AppCompatTextView mFriends;
+    private RoundedImageView mAvatarContainer;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private NestedScrollView mProfileScrollView;
+    private RecyclerView mNotesList;
     private void initComponents(View view) {
         mProfileName = view.findViewById(R.id.activity_profile_profilename_title);
         mActivity = view.findViewById(R.id.activity_profile_activity_title);
@@ -70,10 +75,12 @@ public class MyProfileFragment extends MvpAppCompatFragment
         mWca = view.findViewById(R.id.activity_profile_user_info_wca_title);
         mFriends = view.findViewById(R.id.activity_profile_user_info_friends_value);
         mAvatarContainer = view.findViewById(R.id.activity_profile_avatar_container);
+        mNotesList = view.findViewById(R.id.fragment_my_profile_notes_list);
         mSwipeRefreshLayout = view.findViewById(R.id.activity_profile_swipe_refresh_layout);
         setCustomSwipeRefreshLayoutStyle();
         mProfileScrollView = view.findViewById(R.id.activity_profile_scroll_view_profile);
-        setOverScrolling();
+        mProfileScrollView.setSmoothScrollingEnabled(true);
+        //setOverScrolling();
 
         mSwipeRefreshLayout.setRefreshing(true);
         mUserProfilePresenter.initUserProfile();
@@ -86,7 +93,8 @@ public class MyProfileFragment extends MvpAppCompatFragment
     }
 
     private void setOverScrolling() {
-        OverScrollDecoratorHelper.setUpOverScroll(mProfileScrollView);
+        OverScrollDecoratorHelper.setUpStaticOverScroll(
+                mProfileScrollView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
 
     private void setCustomSwipeRefreshLayoutStyle() {
@@ -106,14 +114,19 @@ public class MyProfileFragment extends MvpAppCompatFragment
         mWca.setHint(user.getWca());
         mFriends.setHint(user.getFriendsCount());
         mUserAvatarContainerPresenter.setAvatar(user);
-        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    private NotesListAdapter mNotesListAdapter;
+    @Override
+    public void initializeUserWall(Wall wall) {
+        mNotesListAdapter = new NotesListAdapter(getActivity(), wall);
+        mNotesList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mNotesList.setAdapter(mNotesListAdapter);
     }
 
     @Override
-    public void initializeUserWall(Wall wall) {
-        for (Note note: wall) {
-            System.out.println(note.isUserOnline() + ", " + note.getUserName());
-        }
+    public void hideProgressBar() {
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

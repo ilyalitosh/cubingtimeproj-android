@@ -23,6 +23,7 @@ public class UserProfilePresenter extends MvpPresenter<UserProfileView> {
         ApiService.getUserProfile(new UserCookie(), UserCookie.getCtUserId(), (user, wall) -> {
             getViewState().initializeUserInfoTextViews(user);
             getViewState().initializeUserWall(wall);
+            getViewState().hideProgressBar();
         });
     }
 

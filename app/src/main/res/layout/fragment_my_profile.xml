@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:id="@+id/activity_profile_swipe_refresh_layout">
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/activity_profile_scroll_view_profile">
@@ -213,10 +213,21 @@
                     </LinearLayout>
 
                 </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_my_profile_notes_list"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp">
+
+                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
     <!--<LinearLayout
