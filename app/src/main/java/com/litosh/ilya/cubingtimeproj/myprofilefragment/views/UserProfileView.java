@@ -12,18 +12,12 @@ import com.litosh.ilya.ct_sdk.models.profile.Wall;
 public interface UserProfileView extends MvpView {
 
     /**
-     * Вызывается при для инициализации информации о юзере
+     * Вызывается при инициализации профиля
      *
-     * @param user юзер
+     * @param wall
+     * @param user
      */
-    void initializeUserInfoTextViews(User user);
-
-    /**
-     * Вызывается при инициализации стены пользователя
-     *
-     * @param wall сущность стены пользователя
-     */
-    void initializeUserWall(Wall wall);
+    void initializeUserProfile(Wall wall, User user);
 
     /**
      * Вызывается, чтобы убрать прогрессбар
