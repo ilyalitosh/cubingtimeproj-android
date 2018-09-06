@@ -2,12 +2,19 @@ package com.litosh.ilya.cubingtimeproj.myprofilefragment.models.adapters;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.transition.TransitionInflater;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.litosh.ilya.ct_sdk.models.profile.User;
 import com.litosh.ilya.ct_sdk.models.profile.Wall;
 import com.litosh.ilya.cubingtimeproj.R;
@@ -15,8 +22,14 @@ import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.AvatarHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.FriendsHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.NoteHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.UserInfoHolder;
+import com.litosh.ilya.cubingtimeproj.notemorefragment.ui.NoteMoreFragment;
 import com.squareup.picasso.Picasso;
 
+/**
+ * ProfileListAdapter
+ *
+ * @author Ilya Litosh
+ */
 public class ProfileListAdapter extends RecyclerView.Adapter {
 
     private LayoutInflater mLayoutInflater;
@@ -52,7 +65,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
         } else {
             view = mLayoutInflater.inflate(
                     R.layout.fragment_my_profile_wall_note_item, parent, false);
-            return new NoteHolder(view);
+            return new NoteHolder(view, mLayoutInflater.getContext(), mWall.get(viewType - ProfileListData.NUMBER_STATIC_ITEMS));
         }
 
     }
@@ -80,7 +93,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
 
         holder.getDate().setText(mWall.get(position).getDate());
 
-        Picasso.get()
+        Glide.with(mLayoutInflater.getContext())
                 .load(Uri.parse(mWall.get(position).getUrlUserAvatar()))
                 .into(holder.getUserIcon());
 
