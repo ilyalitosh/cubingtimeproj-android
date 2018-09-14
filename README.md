@@ -5,7 +5,7 @@
 
 | API <21(<Android 5.0) | API >=21(>= Android 5.0) |
 | :----------------------------------------------: |
-|                    Profile                       |
+|          :          Profile       :                |
 | :----------------------------------------------: |
 | ![profileDemo1](imgres/profile_demo_api_21_and_after_21.gif) | ![profileDemo2](imgres/profile_demo_api_before_21.gif)  |
 
