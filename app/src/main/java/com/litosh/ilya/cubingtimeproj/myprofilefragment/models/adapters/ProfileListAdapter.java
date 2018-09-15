@@ -3,10 +3,6 @@ package com.litosh.ilya.cubingtimeproj.myprofilefragment.models.adapters;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.transition.TransitionInflater;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.litosh.ilya.ct_sdk.models.profile.User;
 import com.litosh.ilya.ct_sdk.models.profile.Wall;
 import com.litosh.ilya.cubingtimeproj.R;
@@ -22,7 +17,6 @@ import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.AvatarHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.FriendsHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.NoteHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.UserInfoHolder;
-import com.litosh.ilya.cubingtimeproj.notemorefragment.ui.NoteMoreFragment;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -86,10 +80,17 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
     }
 
     private void initializeNoteItem(NoteHolder holder, int position) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            holder.getUserIcon().setTransitionName(holder.getTransitionIconName());
+            holder.getUserName().setTransitionName(holder.getTransitionUserNameName());
+            holder.getDate().setTransitionName(holder.getTransitionDate());
+            holder.getText().setTransitionName(holder.getTransitionText());
+        }
+
         holder.getUserName().setText(mWall.get(position).getUserName());
 
         String text = mWall.get(position).getText();
-        holder.getText().setText(text.length() > 100 ? text.substring(0, 100) : text);
+        holder.getText().setText(text.length() > 100 ? getStringOver100Chars(text) : text);
 
         holder.getDate().setText(mWall.get(position).getDate());
 
@@ -97,20 +98,29 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
                 .load(Uri.parse(mWall.get(position).getUrlUserAvatar()))
                 .into(holder.getUserIcon());
 
-        int likesNumber = mWall.get(position).getLikesNumber();
-        if (likesNumber > 0) {
-            holder.getLikeButton().setBackgroundResource(R.drawable.ic_like_pressed);
+        if (mWall.get(position).isLikedMe()) {
+            holder.getLikeImage().setBackgroundResource(R.drawable.ic_like_pressed);
         }
 
+        int likesNumber = mWall.get(position).getLikesNumber();
         if (likesNumber > 0) {
             holder.getLikeNumber().setText(
-                    String.valueOf(mWall.get(position).getLikesNumber()));
+                    String.valueOf(likesNumber));
         } else {
             holder.getLikeNumber().setText("");
         }
 
+        int commentsNumber = mWall.get(position).getCommentsNumber();
+        holder.getCommentsNumber().setText(commentsNumber > 0 ? String.valueOf(commentsNumber) : "");
+
         holder.itemView.setAnimation(
                 AnimationUtils.loadAnimation(mLayoutInflater.getContext(), R.anim.anim_show_itemlist_down_to_up));
+    }
+
+    private String getStringOver100Chars(String s) {
+        return s.substring(0, 100) + "\n" + mLayoutInflater.getContext()
+                .getResources()
+                .getString(R.string.activity_notes_list_item_more_title);
     }
 
     private void initializeAvatarItem(AvatarHolder holder) {

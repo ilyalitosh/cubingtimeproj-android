@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginStart="5dp"
@@ -10,60 +11,82 @@
     android:layout_marginEnd="5dp"
     android:background="@drawable/ic_module_background">
 
-    <RelativeLayout
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_margin="8dp">
-
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_my_profile_wall_note_item_user_icon"/>
-
-    </RelativeLayout>
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginEnd="5dp"
-        android:orientation="vertical">
+        android:layout_margin="5dp">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_margin="3dp">
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/fragment_my_profile_wall_note_item_user_name"
-                android:text="Илья Литош"/>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:id="@+id/fragment_my_profile_wall_note_item_text"
-                android:textSize="16sp"
-                android:text="Всем привет!Всем привет!12 Всем привет!12 Всем привет! Всем привет! Всем привет! Всем привет! Всем привет!"/>
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fragment_my_profile_wall_note_item_user_icon"/>
 
         </RelativeLayout>
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp">
 
             <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fragment_my_profile_wall_note_item_user_name"
+                    android:text="Илья Литош"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/fragment_my_profile_wall_note_item_text"
+                    android:textSize="16sp"
+                    android:text="Всем привет!Всем привет!12 Всем привет!12 Всем привет! Всем привет! Всем привет! Всем привет! Всем привет!"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="3dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="3dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -71,36 +94,85 @@
                     android:textSize="13sp"
                     android:layout_centerVertical="true"
                     android:id="@+id/fragment_my_profile_wall_note_item_date"
-                    android:text="30 сентября 2018 в 19:04"/>
+                    android:text="30 сен 2018 в 19:04"/>
 
             </RelativeLayout>
             <RelativeLayout
-                android:layout_width="65dp"
-                android:layout_height="25dp">
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true">
 
-                    <android.support.v7.widget.AppCompatImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:id="@+id/fragment_my_profile_wall_note_item_like_button"
-                        android:background="@drawable/ic_like_unpressed"/>
                     <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginEnd="20dp">
 
-                        <android.support.v7.widget.AppCompatTextView
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:id="@+id/fragment_my_profile_wall_note_item_comments_button"
+                                android:background="@drawable/ic_comments"
+                                android:layout_marginRight="3dp"
+                                android:layout_marginEnd="3dp"/>
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:textSize="13sp"
+                                    android:id="@+id/fragment_my_profile_wall_note_item_comments_number"
+                                    android:text="9999"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:textSize="13sp"
-                            android:id="@+id/fragment_my_profile_wall_note_item_like_number"
-                            android:text="9999"/>
+                            android:id="@+id/fragment_my_profile_wall_note_item_like_button">
+
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:id="@+id/fragment_my_profile_wall_note_item_like_image"
+                                android:background="@drawable/ic_like_unpressed"
+                                android:layout_marginRight="3dp"
+                                android:layout_marginEnd="3dp"/>
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <android.support.v7.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:textSize="13sp"
+                                    android:id="@+id/fragment_my_profile_wall_note_item_like_number"
+                                    android:text="9999"/>
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
 
                     </RelativeLayout>
 

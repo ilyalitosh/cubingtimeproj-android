@@ -2,7 +2,8 @@
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
             android:layout_marginRight="3dp"
+            android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
             android:orientation="vertical"
             android:background="@drawable/ic_module_background">
@@ -63,8 +66,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:textSize="15sp"
                         android:id="@+id/fragment_my_profile_wall_note_item_more_date"
-                        android:text="2 сентября 2018 в 19:14"/>
+                        android:text="2 сен 2018 в 19:14"/>
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -78,21 +82,36 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentEnd="true">
 
-                        <android.support.v7.widget.AppCompatImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:id="@+id/fragment_my_profile_wall_note_item_more_like_button"
-                            android:background="@drawable/ic_like_unpressed"/>
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
-                            <android.support.v7.widget.AppCompatTextView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:id="@+id/fragment_my_profile_wall_note_item_more_like_number"
-                                android:text="9999"/>
+                                android:layout_height="wrap_content">
+
+                                <android.support.v7.widget.AppCompatImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:id="@+id/fragment_my_profile_wall_note_item_more_like_image"
+                                    android:background="@drawable/ic_like_unpressed"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginEnd="5dp"/>
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent">
+
+                                    <android.support.v7.widget.AppCompatTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:textSize="16sp"
+                                        android:id="@+id/fragment_my_profile_wall_note_item_more_like_number"
+                                        android:text="9999"/>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
 
                         </RelativeLayout>
 
@@ -111,12 +130,24 @@
             android:layout_marginBottom="3dp"
             android:background="@drawable/ic_module_background">
 
-            <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textSize="15sp"
-                android:text="Комментарии" />
+                android:layout_margin="5dp">
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Комментарии " />
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_my_profile_wall_note_item_more_comments_number"
+                    android:text="9999"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
         <android.support.v7.widget.RecyclerView
