@@ -9,6 +9,11 @@ import com.litosh.ilya.ct_sdk.models.profile.Note;
 import com.litosh.ilya.cubingtimeproj.globalmodels.UserCookie;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.LikePostInProfileView;
 
+/**
+ * LikePostInProfilePresenter
+ *
+ * @author Ilya Litosh
+ */
 public class LikePostInProfilePresenter {
 
     private static final String LOG_TAG = "LikePostInProfilePrsntr";
@@ -22,11 +27,11 @@ public class LikePostInProfilePresenter {
     public void like(Note note) {
         if (isLikeAvailable) {
             doLike(note);
+            isLikeAvailable = false;
         }
     }
 
     private void doLike(Note note) {
-        isLikeAvailable = false;
         int likesNumber = note.getLikesNumber();
         boolean isLikedMe = note.isLikedMe();
         ApiService.likePost(

@@ -1,7 +1,6 @@
 package com.litosh.ilya.cubingtimeproj.myprofilefragment.ui;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,17 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.litosh.ilya.ct_sdk.api.ApiService;
-import com.litosh.ilya.ct_sdk.callbacks.OnLikePostCallback;
-import com.litosh.ilya.ct_sdk.models.Like;
 import com.litosh.ilya.ct_sdk.models.profile.User;
 import com.litosh.ilya.ct_sdk.models.profile.Wall;
 import com.litosh.ilya.cubingtimeproj.R;
-import com.litosh.ilya.cubingtimeproj.globalmodels.UserCookie;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.adapters.ProfileListAdapter;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.UserProfilePresenter;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserProfileView;
@@ -31,7 +25,6 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
  *
  * @author Ilya Litosh
  */
-
 public class MyProfileFragment extends MvpAppCompatFragment
         implements UserProfileView {
 
@@ -71,6 +64,7 @@ public class MyProfileFragment extends MvpAppCompatFragment
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mUserProfilePresenter.initUserProfile();
         });
+
     }
 
     private void setOverScrolling() {
@@ -83,6 +77,10 @@ public class MyProfileFragment extends MvpAppCompatFragment
                 R.color.colorMain,
                 R.color.colorMain,
                 R.color.colorMain);
+    }
+
+    public ProfileListAdapter getProfileListAdapter() {
+        return mProfileListAdapter;
     }
 
     private ProfileListAdapter mProfileListAdapter;

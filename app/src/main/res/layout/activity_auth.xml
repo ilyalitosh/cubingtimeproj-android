@@ -1,28 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.litosh.ilya.cubingtimeproj.authactivity.ui.AuthActivity"
     android:background="@color/colorBackground">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:id="@+id/activity_auth_auth_form">
 
-        <android.support.v7.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="90dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_app_logo_with_title"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <RelativeLayout
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="20dp"
+                        app:srcCompat="@drawable/ic_logo_main" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CUBINGTIME"
+                        android:textColor="@color/colorTextLabel"
+                        android:shadowColor="@color/colorShadow"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="5"
+                        android:layout_centerVertical="true"
+                        android:textSize="40sp"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -59,7 +95,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp">
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
 
             <android.support.v7.widget.AppCompatButton
                 android:layout_width="0dp"
@@ -98,6 +135,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="5dp"
         android:layout_marginEnd="5dp"
-        android:hint="@string/app_version"/>
+        android:hint="@string/app_version" />
 
 </RelativeLayout>

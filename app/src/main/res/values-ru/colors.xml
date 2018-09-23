@@ -6,4 +6,5 @@
     <color name="colorBackground">#EEEEEE</color>
     <color name="colorTextLabel">#ffffff</color>
     <color name="colorMain">#5566B0</color>
+    <color name="colorShadow">#77000000</color>
 </resources>

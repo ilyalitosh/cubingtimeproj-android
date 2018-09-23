@@ -157,7 +157,6 @@ public class ChatFragment extends MvpAppCompatFragment
             public void afterTextChanged(Editable editable) {
             }
         });
-        initSpringListenerWithSendButton();
         mSendMessageButton.setOnClickListener(v -> {
             if (!isSomeEmpty()) {
                 ApiService.sendMessage(
@@ -180,38 +179,18 @@ public class ChatFragment extends MvpAppCompatFragment
                         });
             }
         });
-        mNewMessagesPresenter.initListenerNewMessages(mChatMessagesData);
     }
 
-    private void initSpringListenerWithSendButton() {
-        SpringSystem springSystem = SpringSystem.create();
-        SpringConfig springConfig = new SpringConfig(300, 10);
-        Spring spring = springSystem.createSpring();
-        spring.setSpringConfig(springConfig);
-        spring.addListener(new SimpleSpringListener() {
-            @Override
-            public void onSpringUpdate(Spring spring) {
-                float value = (float) spring.getCurrentValue();
-                float scale = 1f - (value * 0.5f);
-                mSendMessageButton.setScaleX(scale);
-                mSendMessageButton.setScaleY(scale);
-            }
-        });
-        mSendMessageButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        spring.setEndValue(1);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        spring.setEndValue(0);
-                        break;
-                }
-                return false;
-            }
+    @Override
+    public void onResume() {
+        super.onResume();
+        mNewMessagesPresenter.listenNewMessages(mChatMessagesData);
+    }
 
-        });
+    @Override
+    public void onPause() {
+        super.onPause();
+        mNewMessagesPresenter.stopListenNewMessages();
     }
 
     public void setChatMessagesData(ChatMessagesData mChatMessagesData) {

@@ -6,20 +6,25 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.litosh.ilya.cubingtimeproj.R;
-import com.litosh.ilya.cubingtimeproj.app.App;
 import com.litosh.ilya.cubingtimeproj.authactivity.models.UserSignInModel;
 import com.litosh.ilya.cubingtimeproj.authactivity.presenters.SignInButtonPresenter;
 import com.litosh.ilya.cubingtimeproj.authactivity.presenters.SignInPresenter;
 import com.litosh.ilya.cubingtimeproj.authactivity.views.SignInButtonView;
-import com.litosh.ilya.cubingtimeproj.db.models.UserCache;
 import com.litosh.ilya.cubingtimeproj.globalmodels.InputFormsChecker;
 import com.litosh.ilya.cubingtimeproj.myprofileactivity.ui.MyProfileActivity;
 
+/**
+ * AuthActivity
+ *
+ * @author Ilya Litosh
+ */
 public class AuthActivity extends MvpAppCompatActivity
         implements InputFormsChecker, SignInButtonView {
 
@@ -33,6 +38,7 @@ public class AuthActivity extends MvpAppCompatActivity
     private AppCompatEditText mInputEmail;
     private AppCompatEditText mInputPass;
     private ProgressDialog mProgressDialog;
+    private LinearLayout mAuthForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,7 @@ public class AuthActivity extends MvpAppCompatActivity
         mInputPass = findViewById(R.id.activity_auth_input_pass);
         mSignInButton = findViewById(R.id.activity_auth_button_sign_in);
         mSignUpButton = findViewById(R.id.activity_auth_button_sign_up);
+        mAuthForm = findViewById(R.id.activity_auth_auth_form);
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle(getString(R.string.activity_auth_progress_dialog_sign_in_title));
     }
@@ -103,5 +110,15 @@ public class AuthActivity extends MvpAppCompatActivity
     @Override
     public void hideProgressDialog() {
         mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void hideAuthorizationForm() {
+        mAuthForm.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showAuthorizationForm() {
+        mAuthForm.setVisibility(View.VISIBLE);
     }
 }

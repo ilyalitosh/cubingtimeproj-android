@@ -5,6 +5,7 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.litosh.ilya.ct_sdk.api.ApiService;
+import com.litosh.ilya.ct_sdk.api.Authorization;
 import com.litosh.ilya.ct_sdk.callbacks.OnUserAuthorizateCallback;
 import com.litosh.ilya.ct_sdk.models.Cookie;
 import com.litosh.ilya.cubingtimeproj.authactivity.models.UserSignInModel;
@@ -27,7 +28,8 @@ public class SignInButtonPresenter extends MvpPresenter<SignInButtonView> {
     public void signIn(UserSignInModel userSignInModel) {
         if (userSignInModel != null) {
             getViewState().showProgressDialog();
-            ApiService.authorizate(
+            Authorization authorization = new Authorization();
+            authorization.authorizate(
                     userSignInModel.getEmail(),
                     userSignInModel.getPass(),
                     new OnUserAuthorizateCallback() {

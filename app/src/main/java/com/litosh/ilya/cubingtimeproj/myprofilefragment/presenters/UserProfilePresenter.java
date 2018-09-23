@@ -3,6 +3,7 @@ package com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.litosh.ilya.ct_sdk.api.ApiService;
+import com.litosh.ilya.ct_sdk.api.ProfileService;
 import com.litosh.ilya.cubingtimeproj.globalmodels.UserCookie;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.UserProfileView;
 
@@ -20,9 +21,8 @@ public class UserProfilePresenter extends MvpPresenter<UserProfileView> {
      *
      */
     public void initUserProfile() {
-        ApiService.getUserProfile(new UserCookie(), UserCookie.getCtUserId(), (user, wall) -> {
-            //getViewState().initializeUserInfoTextViews(user);
-            //getViewState().initializeUserWall(wall);
+        ProfileService profileService = new ProfileService(new UserCookie());
+        profileService.getUserProfile(UserCookie.getCtUserId(), (user, wall) -> {
             getViewState().initializeUserProfile(wall, user);
             getViewState().hideProgressBar();
         });

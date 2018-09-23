@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CubingTime</string>
-    <string name="app_version">v0.2.1a</string>
+    <string name="app_version">v0.2.7a</string>
     <string name="navigation_drawer_open">navigation drawer open</string>
     <string name="navigation_drawer_close">navigation drawer close</string>
 
@@ -18,6 +18,7 @@
     <string name="activity_profile_user_friends_default_value_0">0</string>
     <string name="activity_profile_activity_title_default">offline</string>
     <string name="fragment_chat_room_footer_space_input_message_text">Start typing...</string>
-    <string name="activity_notes_list_item_more_title">Show all...</string>
+    <string name="list_item_more_title">Show all...</string>
+    <string name="activity_more_info_my_profile_wall_note_item_no_comments_title">No comments yet</string>
 
 </resources>

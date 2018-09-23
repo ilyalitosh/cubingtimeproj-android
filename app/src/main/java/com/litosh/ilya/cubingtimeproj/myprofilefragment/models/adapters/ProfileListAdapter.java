@@ -10,14 +10,16 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.litosh.ilya.ct_sdk.models.profile.Note;
 import com.litosh.ilya.ct_sdk.models.profile.User;
 import com.litosh.ilya.ct_sdk.models.profile.Wall;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.AvatarHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.FriendsHolder;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.NoteHolder;
+import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.ProfileListData;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.models.UserInfoHolder;
-import com.squareup.picasso.Picasso;
 
 /**
  * ProfileListAdapter
@@ -47,7 +49,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
         if (viewType == ProfileListData.AVATAR_ITEM) {
             view = mLayoutInflater.inflate(
                     R.layout.fragment_my_profile_avatar_item, parent, false);
-            return new AvatarHolder(view);
+            return new AvatarHolder(view, mLayoutInflater.getContext(), mUser);
         } else if (viewType == ProfileListData.USER_INFO_ITEM) {
             view = mLayoutInflater.inflate(
                     R.layout.fragment_my_profile_user_info, parent, false);
@@ -79,7 +81,21 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * Обновление профайл-айтема в списке
+     *
+     * @param note сущность Note
+     * @param position позиция в списке
+     */
+    public void updateItem(Note note, int position) {
+        mWall.set(position, note);
+        notifyItemChanged(position + ProfileListData.NUMBER_STATIC_ITEMS);
+    }
+
     private void initializeNoteItem(NoteHolder holder, int position) {
+        // Update Note
+        holder.setNote(mWall.get(position));
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             holder.getUserIcon().setTransitionName(holder.getTransitionIconName());
             holder.getUserName().setTransitionName(holder.getTransitionUserNameName());
@@ -91,15 +107,23 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
 
         String text = mWall.get(position).getText();
         holder.getText().setText(text.length() > 100 ? getStringOver100Chars(text) : text);
+        if (text.length() > 100) {
+            holder.getShowAll().setVisibility(View.VISIBLE);
+        } else {
+            holder.getShowAll().setVisibility(View.GONE);
+        }
 
         holder.getDate().setText(mWall.get(position).getDate());
 
         Glide.with(mLayoutInflater.getContext())
+                .applyDefaultRequestOptions(RequestOptions.fitCenterTransform().centerCrop().circleCrop())
                 .load(Uri.parse(mWall.get(position).getUrlUserAvatar()))
                 .into(holder.getUserIcon());
 
         if (mWall.get(position).isLikedMe()) {
             holder.getLikeImage().setBackgroundResource(R.drawable.ic_like_pressed);
+        } else {
+            holder.getLikeImage().setBackgroundResource(R.drawable.ic_like_unpressed);
         }
 
         int likesNumber = mWall.get(position).getLikesNumber();
@@ -118,19 +142,17 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
     }
 
     private String getStringOver100Chars(String s) {
-        return s.substring(0, 100) + "\n" + mLayoutInflater.getContext()
-                .getResources()
-                .getString(R.string.activity_notes_list_item_more_title);
+        return s.substring(0, 100);
     }
 
     private void initializeAvatarItem(AvatarHolder holder) {
-        holder.getActivity().setText(mUser.getActivity());
+        holder.getActivity().setHint(mUser.getActivity());
 
-        holder.getProfileName().setText(mUser.getProfileName());
+        holder.getProfileName().setHint(mUser.getProfileName());
 
         if (!mUser.getUrlAvatar().contains("default")) {
-            Picasso.get()
-                    .load("https://" + Uri.parse(mUser.getUrlAvatar()))
+            Glide.with(mLayoutInflater.getContext())
+                    .load(Uri.parse(mUser.getUrlAvatar()))
                     .into(holder.getAvatarContainer());
         }
 
@@ -161,15 +183,6 @@ public class ProfileListAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return mWall.size() + ProfileListData.NUMBER_STATIC_ITEMS;
-    }
-
-    private class ProfileListData {
-
-        private static final int AVATAR_ITEM = 0;
-        private static final int USER_INFO_ITEM = 1;
-        private static final int FRIENDS_ITEM = 2;
-        private static final int NUMBER_STATIC_ITEMS = 3;
-
     }
 
 }

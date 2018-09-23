@@ -3,15 +3,16 @@ package com.litosh.ilya.cubingtimeproj.myprofilefragment.models;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.RestrictTo;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
@@ -19,20 +20,21 @@ import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.litosh.ilya.ct_sdk.models.profile.Note;
 import com.litosh.ilya.cubingtimeproj.R;
+import com.litosh.ilya.cubingtimeproj.myprofileactivity.ui.MyProfileActivity;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.presenters.LikePostInProfilePresenter;
+import com.litosh.ilya.cubingtimeproj.myprofilefragment.ui.MoreFeaturesListItemMenu;
 import com.litosh.ilya.cubingtimeproj.myprofilefragment.views.LikePostInProfileView;
 import com.litosh.ilya.cubingtimeproj.notemorefragment.ui.NoteMoreActivity;
 
+import java.util.ArrayList;
+
+/**
+ * NoteHolder
+ *
+ * @author Ilya Litosh
+ */
 public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInProfileView {
 
-    private AppCompatImageView mUserIcon;
-    private AppCompatTextView mUserName;
-    private AppCompatTextView mText;
-    private AppCompatTextView mDate;
-    private AppCompatImageView mLikeImage;
-    private AppCompatTextView mLikeNumber;
-    private AppCompatTextView mCommentsNumber;
-    private LinearLayout mLikeButton;
     private Context mContext;
     private Note mNote;
 
@@ -40,15 +42,8 @@ public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInPro
         super(itemView);
         mContext = context;
         mNote = note;
-        mUserIcon = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_user_icon);
-        mUserName = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_user_name);
-        mText = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_text);
-        mDate = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_date);
-        mLikeImage = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_like_image);
-        mLikeNumber = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_like_number);
-        mCommentsNumber = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_comments_number);
-        mLikeButton = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_like_button);
         mLikePostInProfilePresenter = new LikePostInProfilePresenter(this);
+        initializeComponents(itemView);
         initializeListeners();
     }
 
@@ -84,7 +79,39 @@ public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInPro
         return mLikeButton;
     }
 
+    public RelativeLayout getPopupMenuButton() {
+        return mPopupMenuButton;
+    }
+
+    public AppCompatTextView getShowAll() {
+        return mShowAll;
+    }
+
+    private AppCompatImageView mUserIcon;
+    private AppCompatTextView mUserName;
+    private AppCompatTextView mText;
+    private AppCompatTextView mDate;
+    private AppCompatImageView mLikeImage;
+    private AppCompatTextView mLikeNumber;
+    private AppCompatTextView mCommentsNumber;
+    private LinearLayout mLikeButton;
+    private RelativeLayout mPopupMenuButton;
+    private AppCompatTextView mShowAll;
+    private void initializeComponents(View itemView) {
+        mUserIcon = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_user_icon);
+        mUserName = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_user_name);
+        mText = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_text);
+        mDate = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_date);
+        mLikeImage = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_like_image);
+        mLikeNumber = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_like_number);
+        mCommentsNumber = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_comments_number);
+        mLikeButton = itemView.findViewById(R.id.activity_more_info_my_profile_wall_note_item_comments_list_comment_item_like_button);
+        mPopupMenuButton = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_popup_menu_button);
+        mShowAll = itemView.findViewById(R.id.fragment_my_profile_wall_note_item_show_all);
+    }
+
     private LikePostInProfilePresenter mLikePostInProfilePresenter;
+    @RestrictTo(RestrictTo.Scope.SUBCLASSES)
     private void initializeListeners() {
         itemView.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, NoteMoreActivity.class);
@@ -97,12 +124,16 @@ public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInPro
                 Pair<View, String> textPair = Pair.create(getText(), getTransitionText());
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                         (AppCompatActivity) mContext, userIconPair, userNamePair, datePair, textPair);
-                mContext.startActivity(intent, options.toBundle());
+                ((AppCompatActivity) mContext).startActivityForResult(intent, MyProfileActivity.REQUEST_CODE_LIKES_CHANGES, options.toBundle());
             } else {
-                mContext.startActivity(intent);
+                ((AppCompatActivity) mContext).startActivityForResult(intent, MyProfileActivity.REQUEST_CODE_LIKES_CHANGES);
             }
         });
         initSpringListenerWithLikeButton();
+        mPopupMenuButton.setOnClickListener(v -> {
+            MoreFeaturesListItemMenu moreFeaturesListItemMenu = new MoreFeaturesListItemMenu(mContext, v);
+            moreFeaturesListItemMenu.show();
+        });
     }
 
     private void initSpringListenerWithLikeButton() {
@@ -119,22 +150,9 @@ public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInPro
                 getLikeImage().setScaleY(scale);
             }
         });
-        getLikeButton().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        spring.setEndValue(1);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        spring.setEndValue(0);
-                        break;
-                }
-                return false;
-            }
-
-        });
         getLikeButton().setOnClickListener(v -> {
+            spring.setCurrentValue(1);
+            spring.setEndValue(0);
             mLikePostInProfilePresenter.like(mNote);
         });
     }
@@ -155,6 +173,8 @@ public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInPro
         intent.putExtra("note-is-user-online", mNote.isUserOnline());
         intent.putExtra("note-comments-number", mNote.getCommentsNumber());
         intent.putExtra("note-is-liked-me", mNote.isLikedMe());
+        intent.putExtra("note-comments", (ArrayList) mNote.getComments());
+        intent.putExtra("note-position-in-list", getAdapterPosition() - ProfileListData.NUMBER_STATIC_ITEMS);
     }
 
     public String getTransitionIconName() {
@@ -171,6 +191,10 @@ public class NoteHolder extends RecyclerView.ViewHolder implements LikePostInPro
 
     public String getTransitionText() {
         return "note_list_text_transition_" + getAdapterPosition();
+    }
+
+    public void setNote(Note mNote) {
+        this.mNote = mNote;
     }
 
     @Override

@@ -71,7 +71,6 @@ public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsL
         mSwipeRefreshLayout.setOnRefreshListener(() -> {
             mMyChatsListPresenter.setMyChatsListAdapter();
         });
-        mMyChatsListPresenter.listenNewMessagesInChatsList();
     }
 
     @Override
@@ -90,8 +89,14 @@ public class MyMessagesFragment extends MvpAppCompatFragment implements MyChatsL
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mMyChatsListPresenter.listenNewMessagesInChatsList();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
-        ApiService.stopListenNewMessagesInChatsList();
+        mMyChatsListPresenter.stopListenNewMessagesInChatsList();
     }
 }

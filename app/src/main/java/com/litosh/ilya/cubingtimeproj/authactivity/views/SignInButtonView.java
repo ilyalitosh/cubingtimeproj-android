@@ -5,9 +5,8 @@ import com.arellomobile.mvp.MvpView;
 /**
  * SignInButtonView
  *
- * Created by ilya_ on 19.06.2018.
+ * @author Ilya Litosh
  */
-
 public interface SignInButtonView extends MvpView {
 
     /**
@@ -36,5 +35,17 @@ public interface SignInButtonView extends MvpView {
      *
      */
     void hideProgressDialog();
+
+    /**
+     * Вызывается для скрытия формы авторизации
+     *
+     */
+    void hideAuthorizationForm();
+
+    /**
+     * Вызывается для отображения формы авторизации
+     *
+     */
+    void showAuthorizationForm();
 
 }
