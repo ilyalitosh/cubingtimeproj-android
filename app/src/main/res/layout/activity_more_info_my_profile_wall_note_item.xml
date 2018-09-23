@@ -27,17 +27,18 @@
                 android:layout_margin="10dp">
 
                 <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/fragment_my_profile_wall_note_item_more_user_icon" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:id="@+id/activity_more_info_my_profile_wall_note_item_user_icon" />
                 <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:id="@+id/fragment_my_profile_wall_note_item_more_user_name"
+                    android:textSize="18sp"
+                    android:id="@+id/activity_more_info_my_profile_wall_note_item_user_name"
                     android:layout_marginLeft="15dp"
                     android:layout_marginStart="15dp"
-                    android:text="Илья Литош"/>
+                    android:text="Илья Литош"
+                    android:textColor="@color/colorMain"/>
 
             </LinearLayout>
             <RelativeLayout
@@ -49,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:id="@+id/fragment_my_profile_wall_note_item_more_text"
+                    android:id="@+id/activity_more_info_my_profile_wall_note_item_more_text"
                     android:text="Всем привет! Пока, привет пока. Всем привет! \nВсем привет! Пока, привет пока. Всем привет!   Всем привет! Пока, привет пока. Всем привет!      Всем привет! Пока, привет пока. Всем привет!"/>
 
             </RelativeLayout>
@@ -67,7 +68,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:textSize="15sp"
-                        android:id="@+id/fragment_my_profile_wall_note_item_more_date"
+                        android:id="@+id/activity_more_info_my_profile_wall_note_item_date"
                         android:text="2 сен 2018 в 19:14"/>
 
                 </RelativeLayout>
@@ -88,12 +89,13 @@
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:id="@+id/activity_more_info_my_profile_wall_note_item_like_button">
 
                                 <android.support.v7.widget.AppCompatImageView
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:id="@+id/fragment_my_profile_wall_note_item_more_like_image"
+                                    android:id="@+id/activity_more_info_my_profile_wall_note_item_like_image"
                                     android:background="@drawable/ic_like_unpressed"
                                     android:layout_marginRight="5dp"
                                     android:layout_marginEnd="5dp"/>
@@ -106,7 +108,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
                                         android:textSize="16sp"
-                                        android:id="@+id/fragment_my_profile_wall_note_item_more_like_number"
+                                        android:id="@+id/activity_more_info_my_profile_wall_note_item_like_number"
                                         android:text="9999"/>
 
                                 </RelativeLayout>
@@ -127,7 +129,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
-            android:layout_marginBottom="3dp"
             android:background="@drawable/ic_module_background">
 
             <LinearLayout
@@ -144,21 +145,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:id="@+id/fragment_my_profile_wall_note_item_more_comments_number"
+                    android:id="@+id/activity_more_info_my_profile_wall_note_item_comments_number"
                     android:text="9999"/>
 
             </LinearLayout>
 
         </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:id="@+id/fragment_my_profile_wall_note_item_more_comments_list"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp">
 
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutAnimation="@anim/anim_layout_animation_itemlist"
+                android:id="@+id/activity_more_info_my_profile_wall_note_item_comments_list">
+
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:id="@+id/activity_more_info_my_profile_wall_note_item_no_comments_title"
+                android:text="@string/activity_more_info_my_profile_wall_note_item_no_comments_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
