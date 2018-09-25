@@ -3,6 +3,4 @@
 
 ## Демо
 ### ProfileActivity <br>
-| API <21(<Android 5.0) |
-| --------------------- |
-| ![profileDemo2](imgres/profile_demo_api_21_and_after_21.gif) |
+![profileDemo](imgres/profile_demo_api_21_and_after_21.gif)
