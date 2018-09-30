@@ -3,10 +3,12 @@ package com.litosh.ilya.cubingtimeproj.baseactivity.ui;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.RelativeLayout;
 
@@ -21,24 +23,24 @@ import com.litosh.ilya.cubingtimeproj.myprofileactivity.ui.MyProfileActivity;
 
 /**
  * BaseActivity
+ * Базовая активность с дефолтной логикой
+ * навигационного меню
  *
- * Created by ilya_ on 24.06.2018.
+ * @author Ilya Litosh
  */
+public abstract class BaseActivity extends AppCompatActivity implements NavigationViewView {
 
-public class BaseActivity extends MvpAppCompatActivity implements NavigationViewView {
-
-    @InjectPresenter
-    NavigationViewPresenter mNavigationViewPresenter;
+    public static final int REQUEST_CODE_LIKES_CHANGES = 1001;
+    private NavigationViewPresenter mNavigationViewPresenter;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private RelativeLayout mPointerSpace;
     private AppCompatImageView mPointer;
-    private RelativeLayout mFragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
+        setContentView(getLayoutId());
 
         initActivityComponents();
         initActivityListeners();
@@ -51,7 +53,8 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
         mNavigationView = findViewById(R.id.activity_base_navigation_view);
         mPointerSpace = findViewById(R.id.activity_base_pointer_space);
         mPointer = findViewById(R.id.activity_base_pointer);
-        mFragmentContainer = findViewById(R.id.activity_base_fragment_container);
+        mNavigationViewPresenter = new NavigationViewPresenter(this);
+        //mFragmentContainer = findViewById(R.id.activity_base_fragment_container);
         initMenuIcons();
     }
 
@@ -93,10 +96,6 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
         mNavigationViewPresenter.setDrawerListener(getActionBarDrawerData());
     }
 
-    public RelativeLayout getFragmentContainer() {
-        return mFragmentContainer;
-    }
-
     private ActionBarDrawerData getActionBarDrawerData() {
         ActionBarDrawerData actionBarDrawerData = new ActionBarDrawerData();
         actionBarDrawerData.setContext(this);
@@ -112,5 +111,8 @@ public class BaseActivity extends MvpAppCompatActivity implements NavigationView
         mDrawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
+
+    @LayoutRes
+    protected abstract int getLayoutId();
 
 }

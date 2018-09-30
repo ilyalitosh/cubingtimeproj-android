@@ -43,7 +43,7 @@
 
         </activity>
         <activity
-            android:name=".notemorefragment.ui.NoteMoreActivity"
+            android:name=".notemoreactivity.ui.NoteMoreActivity"
             android:theme="@style/AppThemeNoActionBar">
 
         </activity>

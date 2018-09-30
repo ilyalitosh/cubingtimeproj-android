@@ -34,7 +34,7 @@
                         android:layout_height="80dp"
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="20dp"
-                        app:srcCompat="@drawable/ic_logo_main" />
+                        android:background="@drawable/ic_logo_main" />
 
                 </RelativeLayout>
                 <RelativeLayout

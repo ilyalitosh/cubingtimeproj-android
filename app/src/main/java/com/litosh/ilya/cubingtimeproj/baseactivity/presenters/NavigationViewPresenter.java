@@ -14,11 +14,15 @@ import com.litosh.ilya.cubingtimeproj.baseactivity.views.NavigationViewView;
 /**
  * NavigationViewPresenter
  *
- * Created by ilya_ on 24.06.2018.
+ * @author Ilya Litosh
  */
+public class NavigationViewPresenter {
 
-@InjectViewState
-public class NavigationViewPresenter extends MvpPresenter<NavigationViewView> {
+    private NavigationViewView mNavigationViewView;
+
+    public NavigationViewPresenter(NavigationViewView navigationViewView) {
+        mNavigationViewView = navigationViewView;
+    }
 
     public void setDrawerListener(ActionBarDrawerData actionBarDrawerData) {
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
@@ -87,7 +91,7 @@ public class NavigationViewPresenter extends MvpPresenter<NavigationViewView> {
                 });
             }
         };
-        getViewState().setDrawerListener(actionBarDrawerToggle);
+        mNavigationViewView.setDrawerListener(actionBarDrawerToggle);
     }
 
 }
