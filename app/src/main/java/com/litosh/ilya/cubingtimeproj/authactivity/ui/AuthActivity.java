@@ -66,6 +66,9 @@ public class AuthActivity extends MvpAppCompatActivity
         mSignInButton.setOnClickListener(v -> {
             mSignInButtonPresenter.signIn(getInitializedUserSignInModel());
         });
+        mSignUpButton.setOnClickListener(v -> {
+            Toast.makeText(this, "Скоро...", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private UserSignInModel getInitializedUserSignInModel() {
