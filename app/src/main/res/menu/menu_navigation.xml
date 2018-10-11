@@ -11,5 +11,10 @@
         android:id="@+id/navigation_menu_my_messages">
 
     </item>
+    <item
+        android:title=""
+        android:id="@+id/navigation_menu_my_timer">
+
+    </item>
 
 </menu>

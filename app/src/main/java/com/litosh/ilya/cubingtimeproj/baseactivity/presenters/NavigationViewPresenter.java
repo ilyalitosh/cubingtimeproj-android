@@ -1,12 +1,9 @@
 package com.litosh.ilya.cubingtimeproj.baseactivity.presenters;
 
-import android.content.res.Configuration;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.arellomobile.mvp.InjectViewState;
-import com.arellomobile.mvp.MvpPresenter;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.baseactivity.models.ActionBarDrawerData;
 import com.litosh.ilya.cubingtimeproj.baseactivity.views.NavigationViewView;

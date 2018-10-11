@@ -12,14 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.RelativeLayout;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.baseactivity.models.ActionBarDrawerData;
 import com.litosh.ilya.cubingtimeproj.baseactivity.presenters.NavigationViewPresenter;
 import com.litosh.ilya.cubingtimeproj.baseactivity.views.NavigationViewView;
 import com.litosh.ilya.cubingtimeproj.mymessagesactivity.ui.MyMessagesActivity;
 import com.litosh.ilya.cubingtimeproj.myprofileactivity.ui.MyProfileActivity;
+import com.litosh.ilya.cubingtimeproj.timeractivity.ui.MyTimerActivity;
 
 /**
  * BaseActivity
@@ -65,6 +64,9 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
         AppCompatImageView myMessagesIcon = new AppCompatImageView(this);
         myMessagesIcon.setImageResource(R.drawable.ic_my_messages);
         mNavigationView.getMenu().getItem(1).setActionView(myMessagesIcon);
+        AppCompatImageView myTimerIcon = new AppCompatImageView(this);
+        myTimerIcon.setImageResource(R.drawable.ic_my_timer);
+        mNavigationView.getMenu().getItem(2).setActionView(myTimerIcon);
     }
 
     public void initActivityListeners() {
@@ -88,6 +90,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigati
                     intentMyMessages.setFlags(
                             Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intentMyMessages);
+                    overridePendingTransition(R.anim.anim_activity_show, R.anim.anim_activity_hide);
+                    break;
+                case R.id.navigation_menu_my_timer:
+                    Intent intentMyTimer =
+                            new Intent(this, MyTimerActivity.class);
+                    intentMyTimer.setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentMyTimer);
                     overridePendingTransition(R.anim.anim_activity_show, R.anim.anim_activity_hide);
                     break;
             }

@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\ilya_\Downloads\icons8-червы-filled-100.png" />
-                                      <entry key="outputName" value="ic_like_pressed" />
+                                      <entry key="imageAsset" value="F:\Курсач(ПОМС)\макет курсача\src\m1c0.png" />
+                                      <entry key="outputName" value="ic_my_timer" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="5566b0" />
                                     </map>

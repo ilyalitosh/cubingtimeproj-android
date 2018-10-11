@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ic_module_background"
+    android:layout_margin="3dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toLeftOf="@id/activity_timer_viewpager_tab_solves_solves_list_solve_item_more_features_button"
+                android:layout_toStartOf="@id/activity_timer_viewpager_tab_solves_solves_list_solve_item_more_features_button">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_solves_solves_list_solve_item_time"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorMain"
+                        android:text="00:00:00.000"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:id="@+id/activity_timer_viewpager_tab_solves_solves_list_solve_item_scramble"
+                        android:text="B2 U L2 D L2 R2 U' B2 U' R2 U' L R' D' L' B' U B D2 F U2"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:id="@+id/activity_timer_viewpager_tab_solves_solves_list_solve_item_more_features_button"
+                android:background="@drawable/ic_more_button_list_item_black"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -47,6 +47,11 @@
             android:theme="@style/AppThemeNoActionBar">
 
         </activity>
+        <activity
+            android:name=".timeractivity.ui.MyTimerActivity"
+            android:theme="@style/AppThemeNoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
