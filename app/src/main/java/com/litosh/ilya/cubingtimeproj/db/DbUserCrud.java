@@ -3,13 +3,13 @@ package com.litosh.ilya.cubingtimeproj.db;
 import com.litosh.ilya.cubingtimeproj.db.models.UserCache;
 
 /**
- * DbCrud с базовыми методами для "общения"
+ * DbUserCrud с базовыми методами для "общения"
  * с локальной БД
  *
  * Created by ilya_ on 20.06.2018.
  */
 
-interface DbCrud {
+interface DbUserCrud {
 
     /**
      * Добавить UserCache в БД

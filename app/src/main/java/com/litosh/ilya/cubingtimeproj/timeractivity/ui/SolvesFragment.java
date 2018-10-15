@@ -11,11 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.litosh.ilya.cubingtimeproj.R;
+import com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve;
 import com.litosh.ilya.cubingtimeproj.timeractivity.models.adapters.SolvesListAdapter;
+import com.litosh.ilya.cubingtimeproj.timeractivity.presenters.SolvesListPresenter;
+import com.litosh.ilya.cubingtimeproj.timeractivity.views.SolvesListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SolvesFragment extends Fragment {
+/**
+ * SolvesFragment
+ *
+ * @author Ilya Litosh
+ */
+public class SolvesFragment extends Fragment implements SolvesListView {
 
     @Nullable
     @Override
@@ -24,6 +33,7 @@ public class SolvesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_timer_viewpager_tab_solves, container, false);
 
+        initializePresenters();
         initializeComponents(view);
         initializeListeners();
 
@@ -31,23 +41,29 @@ public class SolvesFragment extends Fragment {
     }
 
     private RecyclerView mScoresList;
-    private SolvesListAdapter mSolvesListAdapter;
     private void initializeComponents(View view) {
         mScoresList = view.findViewById(R.id.activity_timer_viewpager_tab_solves_solves_list);
-        mSolvesListAdapter = new SolvesListAdapter(getActivity(), new ArrayList<>());
-        mScoresList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mScoresList.setAdapter(mSolvesListAdapter);
+        mSolvesListPresenter.initializeList();
+    }
+
+    private SolvesListPresenter mSolvesListPresenter;
+    private void initializePresenters() {
+        mSolvesListPresenter = new SolvesListPresenter(this);
     }
 
     public SolvesListAdapter getSolvesListAdapter() {
         return mSolvesListAdapter;
     }
 
-    public RecyclerView getScoresList() {
-        return mScoresList;
-    }
-
     private void initializeListeners() {
 
+    }
+
+    private SolvesListAdapter mSolvesListAdapter;
+    @Override
+    public void updateSolvesList(List<Solve> solves) {
+        mSolvesListAdapter = new SolvesListAdapter(getActivity(), solves);
+        mScoresList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mScoresList.setAdapter(mSolvesListAdapter);
     }
 }

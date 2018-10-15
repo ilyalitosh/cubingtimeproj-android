@@ -55,7 +55,7 @@ public class TimerViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         mFragmentManager.beginTransaction().remove(mPages.get(position)).commit();
-        //mPages.remove(position);
+        //mPages.removeSolve(position);
     }
 
     @Override

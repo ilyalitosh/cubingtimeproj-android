@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:id="@+id/activity_timer_viewpager_tab_timer_scramble"
         android:textSize="18sp"
         android:layout_margin="10dp"
         android:text="B2 U L2 D L2 R2 U' B2 U' R2 U' L R' D' L' B' U B D2 F U2"

@@ -42,7 +42,7 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SolveViewHolder holder, int position) {
         holder.getTime().setText(mSolves.get(holder.getAdapterPosition()).getTime().toString());
-        holder.getScramble().setText(mSolves.get(holder.getAdapterPosition()).getScramble());
+        holder.getScramble().setText(mSolves.get(holder.getAdapterPosition()).getScramble().getScramble());
     }
 
     @Override

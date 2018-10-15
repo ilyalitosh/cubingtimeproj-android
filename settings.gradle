@@ -1,1 +1,1 @@
-include ':app', ':ct-sdk'
+include ':app', ':ct-sdk', ':scramblegenerator'

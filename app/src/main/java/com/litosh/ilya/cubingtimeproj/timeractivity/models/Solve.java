@@ -2,16 +2,16 @@ package com.litosh.ilya.cubingtimeproj.timeractivity.models;
 
 public class Solve {
 
-    private String mScramble;
+    private Scramble mScramble;
     private Time mTime;
     private boolean isPlusTwo;
     private boolean isDNF;
 
-    public String getScramble() {
+    public Scramble getScramble() {
         return mScramble;
     }
 
-    public void setScramble(String mScramble) {
+    public void setScramble(Scramble mScramble) {
         this.mScramble = mScramble;
     }
 
