@@ -10,53 +10,49 @@
     android:background="@color/colorTransparent">
     <!-- tools:openDrawer="start" -->
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_my_messages_swipe_refresh_layout"
-        android:background="@color/colorBackground"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/ic_tablayout_background">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Сообщения"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:textColorHint="@color/colorTextLabel"
+                android:textSize="18sp"/>
+
+        </RelativeLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:id="@+id/fragment_my_messages_swipe_refresh_layout"
+            android:background="@color/colorBackground"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"
-                android:background="@drawable/ic_title_module_background">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Сообщения"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginStart="15dp"
-                    android:textColorHint="@color/colorMain"
-                    android:textSize="16sp"/>
-
-            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp">
+                android:layout_weight="1">
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/fragment_my_messages_chats_list">
+                    android:id="@+id/fragment_my_messages_chats_list"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp">
 
                 </android.support.v7.widget.RecyclerView>
                 <ProgressBar
@@ -68,30 +64,11 @@
                     android:layout_marginTop="20dp"/>
 
             </RelativeLayout>
-            <!--<ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:id="@+id/fragment_my_messages_chats_container_scroll"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/fragment_my_messages_chats_container"
-                    android:orientation="vertical">
+        </android.support.v4.widget.SwipeRefreshLayout>
 
-                </LinearLayout>
+    </LinearLayout>
 
-            </ScrollView>-->
-
-        </LinearLayout>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

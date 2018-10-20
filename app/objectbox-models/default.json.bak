@@ -30,10 +30,59 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "3:8506111647623053629",
+      "lastPropertyId": "3:7053028965872926950",
+      "name": "Solve",
+      "properties": [
+        {
+          "id": "1:1455443884123314307",
+          "name": "id"
+        },
+        {
+          "id": "2:439839250821358314",
+          "name": "scramble"
+        },
+        {
+          "id": "3:7053028965872926950",
+          "indexId": "1:2879951132188326148",
+          "name": "timeId"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:7463018085638985426",
+      "lastPropertyId": "5:8605924047698441046",
+      "name": "Time",
+      "properties": [
+        {
+          "id": "1:3159533539834870978",
+          "name": "id"
+        },
+        {
+          "id": "2:2162413794546862439",
+          "name": "hours"
+        },
+        {
+          "id": "3:5546902859040216448",
+          "name": "minutes"
+        },
+        {
+          "id": "4:4350898119771089059",
+          "name": "seconds"
+        },
+        {
+          "id": "5:8605924047698441046",
+          "name": "milliseconds"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "2:3252182402088457747",
-  "lastIndexId": "0:0",
+  "lastEntityId": "4:7463018085638985426",
+  "lastIndexId": "1:2879951132188326148",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 4,

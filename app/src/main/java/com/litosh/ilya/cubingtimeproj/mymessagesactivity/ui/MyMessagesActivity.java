@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.litosh.ilya.ct_sdk.models.messages.Chat;
-import com.litosh.ilya.ct_sdk.models.profile.Note;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.baseactivity.ui.BaseActivity;
 import com.litosh.ilya.cubingtimeproj.mymessagesactivity.models.adapters.MyChatsListAdapter;
@@ -21,8 +20,6 @@ import com.litosh.ilya.cubingtimeproj.mymessagesactivity.presenters.MyChatsListP
 import com.litosh.ilya.cubingtimeproj.mymessagesactivity.views.MyChatsListView;
 
 import java.util.LinkedList;
-
-import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 
 /**
  * MyMessagesActivity
@@ -99,8 +96,6 @@ public class MyMessagesActivity extends BaseActivity implements MyChatsListView 
         mMyChatsListAdapter = new MyChatsListAdapter(this, chatLinkedList);
         mMyChatsList.setLayoutManager(new LinearLayoutManager(this));
         mMyChatsList.setAdapter(mMyChatsListAdapter);
-        OverScrollDecoratorHelper
-                .setUpOverScroll(mMyChatsList, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
