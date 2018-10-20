@@ -9,9 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ilya.litosh.ScrambleGenerator;
-import com.ilya.litosh.Size;
-import com.ilya.litosh.Type;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.db.DbService;
 import com.litosh.ilya.cubingtimeproj.db.DbSolveCrud;
@@ -19,7 +16,6 @@ import com.litosh.ilya.cubingtimeproj.db.models.DbConverter;
 import com.litosh.ilya.cubingtimeproj.timeractivity.models.Scramble;
 import com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve;
 import com.litosh.ilya.cubingtimeproj.timeractivity.models.Time;
-import com.litosh.ilya.cubingtimeproj.timeractivity.models.TimerData;
 import com.litosh.ilya.cubingtimeproj.timeractivity.presenters.ScrambleViewPresenter;
 import com.litosh.ilya.cubingtimeproj.timeractivity.views.ScrambleViewView;
 
