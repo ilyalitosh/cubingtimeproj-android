@@ -9,6 +9,11 @@ import android.widget.Toast;
 
 import com.litosh.ilya.cubingtimeproj.R;
 
+/**
+ * MoreFeaturesChatItemMenu
+ *
+ * @author Ilya Litosh
+ */
 public class MoreFeaturesChatItemMenu extends PopupMenu implements PopupMenu.OnMenuItemClickListener {
 
     private Context mContext;
@@ -42,4 +47,5 @@ public class MoreFeaturesChatItemMenu extends PopupMenu implements PopupMenu.OnM
         }
         return false;
     }
+
 }

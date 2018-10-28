@@ -8,9 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/ScrambleGenerator" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/ct-sdk" />
-            <option value="$PROJECT_DIR$/scramblegenerator" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

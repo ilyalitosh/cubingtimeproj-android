@@ -11,7 +11,6 @@
     <string name="activity_auth_progress_dialog_sign_in_title">Sign in…</string>
 
 
-
     <string name="activity_profile_profilename_title">Unknown Unknown</string>
     <string name="activity_profile_user_info_title_default">Not indicated</string>
     <string name="activity_profile_user_friends_default_hint">Friends\u0020</string>
@@ -22,9 +21,15 @@
     <string name="activity_more_info_my_profile_wall_note_item_no_comments_title">No comments yet</string>
 
 
-    <!-- menu_more_features_chat_item_delete -->
+    <!-- menu_more_features_chat_item -->
     <string name="menu_more_features_chat_item_update">Refresh</string>
     <string name="menu_more_features_chat_item_delete">Delete this dialog</string>
-    <!-- menu_more_features_chat_item_delete -->
+    <!-- menu_more_features_chat_item -->
+
+    <!-- menu_more_features_solve_item -->
+    <string name="menu_more_features_solve_item_plus_two">+2</string>
+    <string name="menu_more_features_solve_item_dnf">DNF</string>
+    <string name="menu_more_features_solve_item_delete">Delete</string>
+    <!-- menu_more_features_solve_item -->
 
 </resources>

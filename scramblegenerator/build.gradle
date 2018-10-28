@@ -1,2 +1,2 @@
 configurations.maybeCreate("default")
-artifacts.add("default", file('scramblegenerator.jar'))
+artifacts.add("default", file('ScrambleGenerator.jar'))

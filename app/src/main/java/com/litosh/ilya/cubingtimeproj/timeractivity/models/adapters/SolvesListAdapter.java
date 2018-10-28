@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve;
 import com.litosh.ilya.cubingtimeproj.timeractivity.models.SolveViewHolder;
+import com.litosh.ilya.cubingtimeproj.timeractivity.ui.MoreFeaturesSolveItemMenu;
 
 import java.util.List;
 
@@ -22,10 +23,19 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
 
     private LayoutInflater mLayoutInflater;
     private List<Solve> mSolves;
+    private MoreFeaturesSolveItemMenu.OnFeatureClick mOnFeatureClick;
 
-    public SolvesListAdapter(Context context, List<Solve> solves) {
+    public SolvesListAdapter(Context context,
+                             List<Solve> solves,
+                             MoreFeaturesSolveItemMenu.OnFeatureClick onFeatureClick) {
         mLayoutInflater = LayoutInflater.from(context);
         mSolves = solves;
+        mOnFeatureClick = onFeatureClick;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @NonNull
@@ -36,13 +46,15 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
                 parent,
                 false);
 
-        return new SolveViewHolder(view);
+        return new SolveViewHolder(view, mLayoutInflater.getContext(), mSolves.get(viewType));
     }
 
     @Override
     public void onBindViewHolder(@NonNull SolveViewHolder holder, int position) {
         holder.getTime().setText(mSolves.get(holder.getAdapterPosition()).getTime().toString());
         holder.getScramble().setText(mSolves.get(holder.getAdapterPosition()).getScramble().getScramble());
+        holder.getDateWithTime().setText(mSolves.get(holder.getAdapterPosition()).getDate());
+        holder.setOnFeatureClick(mOnFeatureClick);
     }
 
     @Override
@@ -57,6 +69,11 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
     public void addItem(Solve solve) {
         mSolves.add(solve);
         notifyDataSetChanged();
+    }
+
+    public void removeItem(int position) {
+        mSolves.remove(position);
+        notifyItemRemoved(position);
     }
 
 }

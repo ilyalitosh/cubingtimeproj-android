@@ -8,10 +8,19 @@ package com.litosh.ilya.cubingtimeproj.timeractivity.models;
  */
 public class Time {
 
+    private long mDbId;
     private long mHours;
     private long mMinutes;
     private long mSeconds;
     private long mMilliseconds;
+
+    public long getDbId() {
+        return mDbId;
+    }
+
+    public void setDbId(long mDbId) {
+        this.mDbId = mDbId;
+    }
 
     public long getHours() {
         return mHours;

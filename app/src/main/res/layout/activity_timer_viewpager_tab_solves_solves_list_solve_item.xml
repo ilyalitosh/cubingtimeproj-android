@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ic_module_background"
     android:layout_margin="3dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="5dp">
@@ -64,6 +64,13 @@
                 android:background="@drawable/ic_more_button_list_item_black"/>
 
         </RelativeLayout>
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_timer_viewpager_tab_solves_solves_list_solve_item_date"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:text="2018/10/10 10:30:30"/>
 
     </LinearLayout>
 

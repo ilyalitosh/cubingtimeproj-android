@@ -9,6 +9,11 @@ import com.litosh.ilya.cubingtimeproj.timeractivity.views.SolvesListView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SolvesListPresenter
+ *
+ * @author Ilya Litosh
+ */
 public class SolvesListPresenter {
 
     private SolvesListView mSolvesListView;
@@ -27,6 +32,13 @@ public class SolvesListPresenter {
         }
     }
 
+    public void deleteSolve(com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve solve,
+                            int position) {
+        DbSolveCrud dbSolveCrud = new DbService();
+        dbSolveCrud.removeSolve(DbConverter.toDbSolve(solve, false));
+        mSolvesListView.updateSolveListAfterDeletedSolve(position);
+    }
+
     private List<com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve> toSolves(
             List<Solve> dbSolves) {
         List<com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve> solves = new ArrayList<>();
@@ -34,7 +46,7 @@ public class SolvesListPresenter {
             solves.add(DbConverter.toSolve(solve));
         }
         for (com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve solve: solves) {
-            System.out.println(solve.getTime().toString() + " " + solve.getScramble().getScramble());
+            System.out.println(solve.getTime().toString() + " " + solve.getScramble().getScramble() + " " + solve.getSolveType());
         }
 
         return solves;

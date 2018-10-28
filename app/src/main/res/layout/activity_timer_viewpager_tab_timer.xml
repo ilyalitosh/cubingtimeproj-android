@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/activity_timer_viewpager_tab_timer_scramble"
-        android:textSize="18sp"
-        android:layout_margin="10dp"
-        android:text="B2 U L2 D L2 R2 U' B2 U' R2 U' L R' D' L' B' U B D2 F U2"
-        android:textAlignment="center"/>
-    <com.litosh.ilya.cubingtimeproj.timeractivity.ui.Timer
+    <com.litosh.ilya.cubingtimeproj.timeractivity.ui.NonScrollingRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:timerTextSize="50sp"
-        app:timerTextColor="@color/colorShadow"
-        android:id="@+id/activity_timer_viewpager_tab_timer_timer"/>
+        android:id="@+id/activity_timer_viewpager_tab_timer_recycler_view">
+
+    </com.litosh.ilya.cubingtimeproj.timeractivity.ui.NonScrollingRecyclerView>
 
 </RelativeLayout>

@@ -18,4 +18,12 @@ public interface SolvesListView {
      */
     void updateSolvesList(List<Solve> solves);
 
+    /**
+     * Обновление списка сборок
+     * после удаоления сборки
+     *
+     * @param position позиция в списке сборок
+     */
+    void updateSolveListAfterDeletedSolve(int position);
+
 }

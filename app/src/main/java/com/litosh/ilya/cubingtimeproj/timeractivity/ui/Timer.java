@@ -96,7 +96,7 @@ public class Timer extends View implements View.OnTouchListener {
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
-                return true;
+                return false;
         }
 
         return false;

@@ -4,27 +4,25 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.litosh.ilya.cubingtimeproj.R;
-import com.litosh.ilya.cubingtimeproj.db.DbService;
-import com.litosh.ilya.cubingtimeproj.db.DbSolveCrud;
-import com.litosh.ilya.cubingtimeproj.db.models.DbConverter;
-import com.litosh.ilya.cubingtimeproj.timeractivity.models.Scramble;
-import com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve;
-import com.litosh.ilya.cubingtimeproj.timeractivity.models.Time;
-import com.litosh.ilya.cubingtimeproj.timeractivity.presenters.ScrambleViewPresenter;
-import com.litosh.ilya.cubingtimeproj.timeractivity.views.ScrambleViewView;
+import com.litosh.ilya.cubingtimeproj.timeractivity.models.adapters.TabTimerListAdapter;
+import com.litosh.ilya.cubingtimeproj.timeractivity.presenters.PointerMainTimerPresenter;
+import com.litosh.ilya.cubingtimeproj.timeractivity.views.PointerMainTimerView;
 
 /**
  * TimerFragment
  *
  * @author Ilya Litosh
  */
-public class TimerFragment extends Fragment implements ScrambleViewView {
+public class TimerFragment extends Fragment implements PointerMainTimerView {
+
+    private PointerMainTimerPresenter mPointerMainTimerPresenter;
 
     @Nullable
     @Override
@@ -40,38 +38,37 @@ public class TimerFragment extends Fragment implements ScrambleViewView {
         return view;
     }
 
-    private Timer mTimer;
-    private AppCompatTextView mScrambleView;
+    private NonScrollingRecyclerView mRecyclerView;
+    private TabTimerListAdapter mTabTimerListAdapter;
     private void initializeComponents(View view) {
-        mTimer = view.findViewById(R.id.activity_timer_viewpager_tab_timer_timer);
-        mScrambleView = view.findViewById(R.id.activity_timer_viewpager_tab_timer_scramble);
-        mScrambleViewPresenter.updateScrambleView();
-    }
-
-    private ScrambleViewPresenter mScrambleViewPresenter;
-    private void initializePresenters() {
-        mScrambleViewPresenter = new ScrambleViewPresenter(this);
+        mRecyclerView = view.findViewById(R.id.activity_timer_viewpager_tab_timer_recycler_view);
+        mTabTimerListAdapter = new TabTimerListAdapter(getActivity());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mTabTimerListAdapter);
     }
 
     private void initializeListeners() {
-        mTimer.setOnTouchTimerListener(new Timer.OnTouchTimerListener() {
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onTouch() {
-
-            }
-
-            @Override
-            public void onDetach(Time time) {
-                DbSolveCrud dbSolveCrud = new DbService();
-                Solve solve = new Solve();
-                solve.setTime(time);
-                solve.setScramble(mScrambleViewPresenter.getCurrentScramble());
-                dbSolveCrud.addSolve(DbConverter.toDbSolve(solve));
-                mScrambleViewPresenter.addSolveToSolvesList(solve, getParentActivity());
-                mScrambleViewPresenter.newScramble();
-                mScrambleViewPresenter.updateScrambleView();
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                mPointerMainTimerPresenter.rotate(
+                        mTabTimerListAdapter.getMainTimerHolder().getPointer(),
+                        dy,
+                        mTabTimerListAdapter.getAdditionalDataViewHeight());
             }
         });
+    }
+
+    private void initializePresenters() {
+        mPointerMainTimerPresenter = new PointerMainTimerPresenter(this);
+    }
+
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
+
+    public TabTimerListAdapter getTabTimerListAdapter() {
+        return mTabTimerListAdapter;
     }
 
     private MyTimerActivity getParentActivity() {
@@ -79,7 +76,7 @@ public class TimerFragment extends Fragment implements ScrambleViewView {
     }
 
     @Override
-    public void updateScrambleViewText(Scramble scramble) {
-        mScrambleView.setText(scramble.getScramble());
+    public void rotatePointer(float value) {
+        mTabTimerListAdapter.getMainTimerHolder().getPointer().setRotation(value);
     }
 }

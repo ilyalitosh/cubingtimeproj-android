@@ -24,7 +24,8 @@ import java.util.List;
  *
  * @author Ilya Litosh
  */
-public class SolvesFragment extends Fragment implements SolvesListView {
+public class SolvesFragment extends Fragment
+        implements SolvesListView, MoreFeaturesSolveItemMenu.OnFeatureClick {
 
     @Nullable
     @Override
@@ -62,8 +63,28 @@ public class SolvesFragment extends Fragment implements SolvesListView {
     private SolvesListAdapter mSolvesListAdapter;
     @Override
     public void updateSolvesList(List<Solve> solves) {
-        mSolvesListAdapter = new SolvesListAdapter(getActivity(), solves);
+        mSolvesListAdapter = new SolvesListAdapter(getActivity(), solves, this);
         mScoresList.setLayoutManager(new LinearLayoutManager(getActivity()));
         mScoresList.setAdapter(mSolvesListAdapter);
+    }
+
+    @Override
+    public void updateSolveListAfterDeletedSolve(int position) {
+        mSolvesListAdapter.removeItem(position);
+    }
+
+    @Override
+    public void delete(int position, Solve solve) {
+        mSolvesListPresenter.deleteSolve(solve, position);
+    }
+
+    @Override
+    public void dnf(int position, Solve solve) {
+
+    }
+
+    @Override
+    public void plusTwo(int position, Solve solve) {
+
     }
 }

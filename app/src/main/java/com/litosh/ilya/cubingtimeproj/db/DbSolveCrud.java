@@ -16,7 +16,7 @@ public interface DbSolveCrud {
      *
      * @param solve сущность
      */
-    void addSolve(Solve solve);
+    long addSolve(Solve solve);
 
     /**
      * Получает сущность из БД
@@ -37,5 +37,23 @@ public interface DbSolveCrud {
      * @param solve сущность
      */
     void updateSolve(Solve solve);
+
+    /**
+     * Возвращает все сборки без лучшей и худшей
+     *
+     */
+    List<Solve> getMiddleSolves();
+
+    /**
+     * Возвращает лучшую сборку
+     *
+     */
+    Solve getBestSolve();
+
+    /**
+     * Возвращает худшую сборку
+     *
+     */
+    Solve getWorstSolve();
 
 }

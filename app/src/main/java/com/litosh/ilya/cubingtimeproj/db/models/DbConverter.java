@@ -17,10 +17,15 @@ public class DbConverter {
      *
      * @param mSolve сборка
      */
-    public static Solve toDbSolve(com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve mSolve) {
+    public static Solve toDbSolve(com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve mSolve, boolean isNewSolve) {
         Solve dbSolve = new Solve();
+        if (!isNewSolve) {
+            dbSolve.setId(mSolve.getDbId());
+        }
         dbSolve.setScramble(mSolve.getScramble().getScramble());
-        dbSolve.getTime().setTarget(toDbTime(mSolve.getTime()));
+        dbSolve.getTime().setTarget(toDbTime(mSolve.getTime(), isNewSolve));
+        dbSolve.setDate(mSolve.getDate());
+        dbSolve.setSolveType(mSolve.getSolveType());
 
         return dbSolve;
     }
@@ -30,8 +35,11 @@ public class DbConverter {
      *
      * @param mTime время
      */
-    public static Time toDbTime(com.litosh.ilya.cubingtimeproj.timeractivity.models.Time mTime) {
+    public static Time toDbTime(com.litosh.ilya.cubingtimeproj.timeractivity.models.Time mTime, boolean isNewTime) {
         Time dbTime = new Time();
+        if (!isNewTime) {
+            dbTime.setId(mTime.getDbId());
+        }
         dbTime.setHours(mTime.getHours());
         dbTime.setMinutes(mTime.getMinutes());
         dbTime.setSeconds(mTime.getSeconds());
@@ -48,8 +56,11 @@ public class DbConverter {
     public static com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve toSolve(Solve dbSolve) {
         com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve solve =
                 new com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve();
+        solve.setDbId(dbSolve.getId());
         solve.setTime(toTime(dbSolve.getTime().getTarget()));
         solve.setScramble(Scramble.createScramble(dbSolve.getScramble()));
+        solve.setDate(dbSolve.getDate());
+        solve.setSolveType(dbSolve.getSolveType());
 
         return solve;
     }
@@ -62,6 +73,7 @@ public class DbConverter {
     public static com.litosh.ilya.cubingtimeproj.timeractivity.models.Time toTime(Time dbTime) {
         com.litosh.ilya.cubingtimeproj.timeractivity.models.Time time =
                 new com.litosh.ilya.cubingtimeproj.timeractivity.models.Time();
+        time.setDbId(dbTime.getId());
         time.setHours(dbTime.getHours());
         time.setMinutes(dbTime.getMinutes());
         time.setSeconds(dbTime.getSeconds());

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ScrambleGenerator/ScrambleGenerator.iml" filepath="$PROJECT_DIR$/ScrambleGenerator/ScrambleGenerator.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ct-sdk/ct-sdk.iml" filepath="$PROJECT_DIR$/ct-sdk/ct-sdk.iml" />
       <module fileurl="file://$PROJECT_DIR$/cubingtimeproj.iml" filepath="$PROJECT_DIR$/cubingtimeproj.iml" />
       <module fileurl="file://$PROJECT_DIR$/cubingtimeproj-android.iml" filepath="$PROJECT_DIR$/cubingtimeproj-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scramblegenerator/scramblegenerator.iml" filepath="$PROJECT_DIR$/scramblegenerator/scramblegenerator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scramblegenerator/scramblegenerator.iml" filepath="$PROJECT_DIR$/scramblegenerator/scramblegenerator.iml" />
     </modules>
   </component>
 </project>

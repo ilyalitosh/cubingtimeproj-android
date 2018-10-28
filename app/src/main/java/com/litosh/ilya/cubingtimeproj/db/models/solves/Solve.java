@@ -18,6 +18,8 @@ public class Solve {
     private long id;
     private ToOne<Time> time;
     private String scramble;
+    private String date;
+    private int solveType;
 
     public long getId() {
         return id;
@@ -41,5 +43,21 @@ public class Solve {
 
     public void setScramble(String scramble) {
         this.scramble = scramble;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String mDate) {
+        this.date = mDate;
+    }
+
+    public int getSolveType() {
+        return solveType;
+    }
+
+    public void setSolveType(int solveType) {
+        this.solveType = solveType;
     }
 }

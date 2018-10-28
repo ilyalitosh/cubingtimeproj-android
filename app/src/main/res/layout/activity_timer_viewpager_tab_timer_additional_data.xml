@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorMain">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <com.litosh.ilya.cubingtimeproj.timeractivity.ui.ScrambleGraph
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_scramble_graph"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Все сборки : "
+                        android:textSize="13sp"
+                        android:textColor="@color/colorTextLabel"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_all_solves_count"
+                        android:text="99"
+                        android:textSize="13sp"
+                        android:textColor="@color/colorTextLabel"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:text="Среднее : "
+                        android:textColor="@color/colorTextLabel"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_session_average"
+                        android:textSize="13sp"
+                        android:text="18.23"
+                        android:textColor="@color/colorTextLabel"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:text="Лучшая : "
+                        android:textColor="@color/colorTextLabel"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_best_solve_session"
+                        android:textSize="13sp"
+                        android:text="12.13"
+                        android:textColor="@color/colorTextLabel"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:text="Худшая : "
+                        android:textColor="@color/colorTextLabel"/>
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_worst_solve_session"
+                        android:textSize="13sp"
+                        android:text="24.72"
+                        android:textColor="@color/colorTextLabel"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:text="Текущее среднее из 3 : "
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLabel"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_current_avg_3"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp"
+                            android:text="0.000"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorTextLabel"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:text="Текущее среднее из 5 : "
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLabel"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_current_avg_5"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp"
+                            android:text="0.000"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorTextLabel"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_current_avg_12"
+                        android:textSize="13sp"
+                        android:text="Текущее среднее из 12 : "
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLabel"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp"
+                            android:text="0.000"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorTextLabel"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/activity_timer_viewpager_tab_timer_additional_data_current_avg_100"
+                        android:textSize="13sp"
+                        android:text="Текущее среднее из 100 : "
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextLabel"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:textSize="13sp"
+                            android:text="0.000"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorTextLabel"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
