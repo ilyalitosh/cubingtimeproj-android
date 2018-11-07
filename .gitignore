@@ -10,3 +10,4 @@
 .gitignore
 /app/release
 /app/build
+/app/objectbox-models/default.json
