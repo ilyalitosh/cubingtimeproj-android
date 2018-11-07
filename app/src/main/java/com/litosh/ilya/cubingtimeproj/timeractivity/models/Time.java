@@ -13,6 +13,7 @@ public class Time {
     private long mMinutes;
     private long mSeconds;
     private long mMilliseconds;
+    private long mFullTimeInMilliseconds;
 
     public long getDbId() {
         return mDbId;
@@ -86,6 +87,14 @@ public class Time {
 
     public void setMilliseconds(long mMilliseconds) {
         this.mMilliseconds = mMilliseconds;
+    }
+
+    public long getFullTimeInMilliseconds() {
+        return mFullTimeInMilliseconds;
+    }
+
+    public void setFullTimeInMilliseconds(long mFullTimeInMilliseconds) {
+        this.mFullTimeInMilliseconds = mFullTimeInMilliseconds;
     }
 
     @Override

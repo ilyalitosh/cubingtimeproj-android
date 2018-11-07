@@ -73,7 +73,8 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
 
     public void removeItem(int position) {
         mSolves.remove(position);
-        notifyItemRemoved(position);
+//        notifyItemRemoved(position);
+        notifyDataSetChanged();
     }
 
 }

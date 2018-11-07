@@ -1,5 +1,6 @@
 package com.litosh.ilya.cubingtimeproj.db;
 
+import com.litosh.ilya.cubingtimeproj.db.models.SolvingAddingResponse;
 import com.litosh.ilya.cubingtimeproj.db.models.solves.Solve;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public interface DbSolveCrud {
      *
      * @param solve сущность
      */
-    long addSolve(Solve solve);
+    SolvingAddingResponse addSolve(Solve solve);
 
     /**
      * Получает сущность из БД

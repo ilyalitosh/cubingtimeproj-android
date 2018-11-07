@@ -12,6 +12,7 @@ import com.litosh.ilya.cubingtimeproj.R;
 import com.litosh.ilya.cubingtimeproj.db.DbService;
 import com.litosh.ilya.cubingtimeproj.db.DbSolveCrud;
 import com.litosh.ilya.cubingtimeproj.db.models.DbConverter;
+import com.litosh.ilya.cubingtimeproj.db.models.SolvingAddingResponse;
 import com.litosh.ilya.cubingtimeproj.globalmodels.DateFormatter;
 import com.litosh.ilya.cubingtimeproj.timeractivity.presenters.ScrambleViewPresenter;
 import com.litosh.ilya.cubingtimeproj.timeractivity.ui.MyTimerActivity;
@@ -70,7 +71,9 @@ public class MainTimerHolder extends RecyclerView.ViewHolder implements Scramble
                 solve.setTime(time);
                 solve.setScramble(mScrambleViewPresenter.getCurrentScramble());
                 solve.setDate(DateFormatter.getCurrentDateWithTime());
-                solve.setDbId(dbSolveCrud.addSolve(DbConverter.toDbSolve(solve, true)));
+                SolvingAddingResponse dbAddingResponse = dbSolveCrud.addSolve(DbConverter.toDbSolve(solve, true));
+                solve.setDbId(dbAddingResponse.getTimeDbId());
+                solve.getTime().setDbId(dbAddingResponse.getTimeDbId());
                 mScrambleViewPresenter.addSolveToSolvesList(solve, ((MyTimerActivity) mContext));
                 mScrambleViewPresenter.newScramble();
                 mScrambleViewPresenter.updateScrambleView();

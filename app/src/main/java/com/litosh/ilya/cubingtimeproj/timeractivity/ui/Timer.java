@@ -148,7 +148,21 @@ public class Timer extends View implements View.OnTouchListener {
     private void stop() {
         mThread.stopThread();
         isStarted = false;
+        computeFullTimeInMillis();
         mOnTouchTimerListener.onDetach(mTime);
+    }
+
+    private void computeFullTimeInMillis() {
+        mTime.setFullTimeInMilliseconds(
+                getInMillis(mTime.getHours(), 3600 * 1000) +
+                getInMillis(mTime.getMinutes(), 60 * 1000) +
+                getInMillis(mTime.getSeconds(), 1000) +
+                getInMillis(mTime.getMilliseconds(), 1));
+
+    }
+
+    private long getInMillis(long time, long multiplier) {
+        return time * multiplier;
     }
 
     /**

@@ -33,7 +33,7 @@
     },
     {
       "id": "3:8506111647623053629",
-      "lastPropertyId": "6:4799276572400493290",
+      "lastPropertyId": "7:8149584819487215694",
       "name": "Solve",
       "properties": [
         {
@@ -45,24 +45,24 @@
           "name": "scramble"
         },
         {
-          "id": "3:7053028965872926950",
-          "indexId": "1:2879951132188326148",
-          "name": "timeId"
-        },
-        {
           "id": "5:8604968711065643345",
           "name": "date"
         },
         {
           "id": "6:4799276572400493290",
           "name": "solveType"
+        },
+        {
+          "id": "7:8149584819487215694",
+          "indexId": "2:178427230558662768",
+          "name": "timeId"
         }
       ],
       "relations": []
     },
     {
       "id": "4:7463018085638985426",
-      "lastPropertyId": "5:8605924047698441046",
+      "lastPropertyId": "6:2894008976887208968",
       "name": "Time",
       "properties": [
         {
@@ -84,29 +84,38 @@
         {
           "id": "5:8605924047698441046",
           "name": "milliseconds"
+        },
+        {
+          "id": "6:2894008976887208968",
+          "name": "fullTimeInMilliseconds"
         }
       ],
       "relations": []
     }
   ],
   "lastEntityId": "4:7463018085638985426",
-  "lastIndexId": "1:2879951132188326148",
-  "lastRelationId": "0:0",
+  "lastIndexId": "2:178427230558662768",
+  "lastRelationId": "1:4335220038186438061",
   "lastSequenceId": "0:0",
   "modelVersion": 4,
   "modelVersionParserMinimum": 4,
   "retiredEntityUids": [
     5126195832023008795
   ],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    2879951132188326148
+  ],
   "retiredPropertyUids": [
     4945447948971318532,
     2391849797973602281,
     231664254906795888,
     2053254666174755756,
     2392697139643052756,
-    1071752319743532235
+    1071752319743532235,
+    7053028965872926950
   ],
-  "retiredRelationUids": [],
+  "retiredRelationUids": [
+    4335220038186438061
+  ],
   "version": 1
 }

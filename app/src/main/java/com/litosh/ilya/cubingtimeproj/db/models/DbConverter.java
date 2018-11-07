@@ -22,8 +22,8 @@ public class DbConverter {
         if (!isNewSolve) {
             dbSolve.setId(mSolve.getDbId());
         }
-        dbSolve.setScramble(mSolve.getScramble().getScramble());
         dbSolve.getTime().setTarget(toDbTime(mSolve.getTime(), isNewSolve));
+        dbSolve.setScramble(mSolve.getScramble().getScramble());
         dbSolve.setDate(mSolve.getDate());
         dbSolve.setSolveType(mSolve.getSolveType());
 
@@ -44,6 +44,7 @@ public class DbConverter {
         dbTime.setMinutes(mTime.getMinutes());
         dbTime.setSeconds(mTime.getSeconds());
         dbTime.setMilliseconds(mTime.getMilliseconds());
+        dbTime.setFullTimeInMilliseconds(mTime.getFullTimeInMilliseconds());
 
         return dbTime;
     }
@@ -78,6 +79,7 @@ public class DbConverter {
         time.setMinutes(dbTime.getMinutes());
         time.setSeconds(dbTime.getSeconds());
         time.setMilliseconds(dbTime.getMilliseconds());
+        time.setFullTimeInMilliseconds(dbTime.getFullTimeInMilliseconds());
 
         return time;
     }

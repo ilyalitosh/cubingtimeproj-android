@@ -18,6 +18,7 @@ public class Time {
     private long minutes;
     private long seconds;
     private long milliseconds;
+    private long fullTimeInMilliseconds;
 
     public long getId() {
         return id;
@@ -57,5 +58,13 @@ public class Time {
 
     public void setMilliseconds(long milliseconds) {
         this.milliseconds = milliseconds;
+    }
+
+    public long getFullTimeInMilliseconds() {
+        return fullTimeInMilliseconds;
+    }
+
+    public void setFullTimeInMilliseconds(long fullTimeInMilliseconds) {
+        this.fullTimeInMilliseconds = fullTimeInMilliseconds;
     }
 }

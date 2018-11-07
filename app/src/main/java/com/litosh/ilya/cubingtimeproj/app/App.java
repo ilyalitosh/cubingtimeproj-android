@@ -11,9 +11,8 @@ import io.objectbox.BoxStore;
 /**
  * App класс приложения
  *
- * Created by ilya_ on 16.06.2018.
+ * @author Ilya Litosh
  */
-
 public class App extends Application {
 
     private static BoxStore boxStore;

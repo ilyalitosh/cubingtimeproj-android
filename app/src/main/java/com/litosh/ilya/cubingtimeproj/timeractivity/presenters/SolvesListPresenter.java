@@ -45,9 +45,11 @@ public class SolvesListPresenter {
         for (Solve solve: dbSolves) {
             solves.add(DbConverter.toSolve(solve));
         }
-        for (com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve solve: solves) {
-            System.out.println(solve.getTime().toString() + " " + solve.getScramble().getScramble() + " " + solve.getSolveType());
-        }
+
+        // FIXME For DEBUG
+//        for (com.litosh.ilya.cubingtimeproj.timeractivity.models.Solve solve: solves) {
+//            System.out.println(solve.getTime().toString() + " " + solve.getScramble().getScramble() + " " + solve.getSolveType());
+//        }
 
         return solves;
     }
