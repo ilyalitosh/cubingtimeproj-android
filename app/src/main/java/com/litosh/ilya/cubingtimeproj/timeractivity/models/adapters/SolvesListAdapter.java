@@ -46,11 +46,12 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
                 parent,
                 false);
 
-        return new SolveViewHolder(view, mLayoutInflater.getContext(), mSolves.get(viewType));
+        return new SolveViewHolder(view, mLayoutInflater.getContext());
     }
 
     @Override
     public void onBindViewHolder(@NonNull SolveViewHolder holder, int position) {
+        holder.setSolve(mSolves.get(holder.getAdapterPosition()));
         holder.getTime().setText(mSolves.get(holder.getAdapterPosition()).getTime().toString());
         holder.getScramble().setText(mSolves.get(holder.getAdapterPosition()).getScramble().getScramble());
         holder.getDateWithTime().setText(mSolves.get(holder.getAdapterPosition()).getDate());
@@ -73,8 +74,7 @@ public class SolvesListAdapter extends RecyclerView.Adapter<SolveViewHolder> {
 
     public void removeItem(int position) {
         mSolves.remove(position);
-//        notifyItemRemoved(position);
-        notifyDataSetChanged();
+        notifyItemRemoved(position);
     }
 
 }

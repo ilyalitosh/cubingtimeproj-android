@@ -118,22 +118,32 @@ public class DbService implements DbUserCrud, DbSolveCrud {
 
     @Override
     public void removeSolve(Solve solve) {
-        Box<Solve> transactionSolvesBox = App.getDbSession().boxFor(Solve.class);
-        Box<Time> transactionTimeBox = App.getDbSession().boxFor(Time.class);
-        int solveTypeOfRemovedSolve = solve.getSolveType();
-        App.getDbSession().runInTx(() -> {
-            transactionTimeBox.remove(solve.getTime().getTarget());
-            transactionSolvesBox.remove(solve);
-        });
-        if (solveTypeOfRemovedSolve == SOLVE_TYPE_WORST) {
-            updateSolve(getNewWorstSolve(App.getDbSession().boxFor(Solve.class).getAll()));
-        } else if (solveTypeOfRemovedSolve == SOLVE_TYPE_BEST) {
-            updateSolve(getNewBestSolves(App.getDbSession().boxFor(Solve.class).getAll()));
+        Box<Solve> solvesBox = App.getDbSession().boxFor(Solve.class);
+        Box<Time> timeBox = App.getDbSession().boxFor(Time.class);
+
+        Solve solveFromDb = solvesBox.get(solve.getId());
+        int solveTypeOfRemovedSolve = solveFromDb.getSolveType();
+
+        int solveSize = solvesBox.getAll().size();
+        if (solveSize == 1) {
+            solvesBox.removeAll();
+            timeBox.removeAll();
+            return;
         }
+
+        solvesBox.remove(solveFromDb);
+        timeBox.remove(solveFromDb.getTime().getTarget());
+
+        if (solveTypeOfRemovedSolve == SOLVE_TYPE_WORST) {
+            updateSolve(getNewWorstSolve(solvesBox.getAll()));
+        } else if (solveTypeOfRemovedSolve == SOLVE_TYPE_BEST) {
+            updateSolve(getNewBestSolves(solvesBox.getAll()));
+        }
+
     }
 
     private Solve getNewWorstSolve(List<Solve> solves) {
-        if (solves.size() != 0) {
+        if (solves.size() > 1) {
             return detectWorstSolve(solves);
         }
 

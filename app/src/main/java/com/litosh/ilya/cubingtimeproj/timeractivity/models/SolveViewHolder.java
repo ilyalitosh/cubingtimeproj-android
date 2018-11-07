@@ -24,10 +24,9 @@ public class SolveViewHolder extends RecyclerView.ViewHolder {
     private AppCompatTextView mDateWithTime;
     private Solve mSolve;
 
-    public SolveViewHolder(View itemView, Context context, Solve solve) {
+    public SolveViewHolder(View itemView, Context context) {
         super(itemView);
         mContext = context;
-        mSolve = solve;
         mTime = itemView.findViewById(
                 R.id.activity_timer_viewpager_tab_solves_solves_list_solve_item_time);
         mScramble = itemView.findViewById(
@@ -37,6 +36,10 @@ public class SolveViewHolder extends RecyclerView.ViewHolder {
         mDateWithTime = itemView.findViewById(
                 R.id.activity_timer_viewpager_tab_solves_solves_list_solve_item_date);
         initializeListeners();
+    }
+
+    public void setSolve(Solve mSolve) {
+        this.mSolve = mSolve;
     }
 
     public AppCompatTextView getTime() {

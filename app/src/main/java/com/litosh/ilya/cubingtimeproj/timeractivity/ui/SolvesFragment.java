@@ -16,7 +16,6 @@ import com.litosh.ilya.cubingtimeproj.timeractivity.models.adapters.SolvesListAd
 import com.litosh.ilya.cubingtimeproj.timeractivity.presenters.SolvesListPresenter;
 import com.litosh.ilya.cubingtimeproj.timeractivity.views.SolvesListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
